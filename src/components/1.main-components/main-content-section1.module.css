@@ -1,0 +1,75 @@
+/* 메인페이지 메인섹션1 전체 */
+.main_div {
+  margin-top: 20rem;
+  text-align: center;
+}
+
+/* 운동 방법을 모르시겠다면 */
+.how_to_workout_textP {
+  font-size: 2rem;
+}
+/* Do-Health 가 도와드리겠습니다 */
+.how_to_workout_textH {
+  font-size: 3rem;
+}
+
+.how_to_workout_textH span {
+  font-size: 2rem;
+  font-weight: 400;
+}
+/* 설명란 */
+.how_to_workout_desc {
+  font-size: 1.5rem;
+}
+.how_to_workout_desc span {
+  font-weight: 600;
+}
+
+/* 아래 예시 이미지 전체 */
+.how_to_workout_image_section {
+  margin: 2rem auto;
+  width: 70%;
+  max-width: 60rem;
+  height: 50rem;
+  border-radius: 40px;
+  background-color: var(--section-desc-img-background-color-trans8);
+  display: flex;
+  justify-content: space-between;
+}
+
+/* 이미지 설명 텍스트 */
+.how_to_workout_text_div {
+  color: var(--main-content-color);
+  margin-left: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+
+/* 이미지 설명 텍스트 타이틀 */
+.how_to_workout_text_div_title h1 {
+  font-size: 3rem;
+  font-weight: 600;
+  margin-left: 6rem;
+}
+/* 이미지 설명 텍스트 타이틀  애니메이션*/
+.how_to_workout_text_div_title_animation {
+  animation: toleft 1000ms ease-out;
+}
+
+/* 이미지 설명 텍스트 작은글씨들 */
+.how_to_workout_text_div_desc p {
+  font-weight: 300;
+}
+
+/* 예시 이미지 Div*/
+.how_to_workout_image_div {
+  margin: auto 0;
+}
+
+.how_to_workout_image_div img {
+  margin-right: 1.5rem;
+  width: 30rem;
+  height: 40rem;
+  border-radius: 40px;
+}

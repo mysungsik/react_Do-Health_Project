@@ -1,0 +1,56 @@
+/* 비디오 스타일*/
+.video_div {
+  z-index: -100;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 60rem;
+  object-fit: cover;
+}
+
+/* 메인 화면  모든 텍스트들 */
+.main_Intro {
+  color: var(--main-content-color);
+  margin-top: 10rem;
+  margin-left: 6rem;
+}
+
+/* 건강을 지키는 단 하나의 법칙 */
+.main_Intro_textP {
+  font-size: 3rem;
+  font-weight: lighter;
+}
+
+/* 당장 */
+.main_Intro_textH span {
+  font-size: 3rem;
+  font-weight: lighter;
+}
+
+/* Do-Health */
+.main_Intro_textH {
+  font-size: 5rem;
+  font-weight: 700;
+  margin-left: 8rem;
+}
+
+/* 버튼 섹션 */
+.main_Intro_buttons {
+  display: flex;
+  flex-direction: column;
+
+  margin-left: 5rem;
+  margin-top: 8rem;
+}
+
+.main_Intro_buttons button {
+  margin: 1rem;
+  transition: all 100ms ease-out;
+}
+
+.main_Intro_buttons button:hover {
+  cursor: pointer;
+  opacity: 0.8;
+  transform: scale(1.02);
+}

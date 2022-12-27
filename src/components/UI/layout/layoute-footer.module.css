@@ -1,0 +1,39 @@
+/* 메인 푸터 */
+.main_footer {
+  width: 100%;
+  height: 7rem;
+  display: flex;
+  justify-content: space-between;
+  background-color: var(--main-background-color-trans8);
+  color: white;
+}
+
+/* 로고 */
+.footer_logo {
+  display: flex;
+  align-items: center;
+  margin-left: 2rem;
+}
+
+/* 메뉴 우측 */
+.footer_menu {
+  margin-right: 2rem;
+  list-style: none;
+  display: flex;
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+/* 메뉴 각각 */
+.footer_menu li {
+  display: flex;
+  align-items: center;
+  margin: 0 2rem;
+  transition: all 100ms ease-out;
+}
+
+.footer_menu li:hover {
+  cursor: pointer;
+  opacity: 0.8;
+  transform: scale(1.02);
+}

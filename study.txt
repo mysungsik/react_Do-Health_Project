@@ -1,0 +1,211 @@
+1. HTML5 Video 를 사용해보았다.
+
+    const Intro = () => {
+        return (
+        <div>
+            <section>
+            <video autoPlay className={styles.video_div} muted loop>
+                <source src="/mainpage/main-video.mp4" type="video/mp4"></source>
+            </video>
+                        ...
+    
+    ** mute 를 사용하지 않으면 "동영상 재생이 끊기는 경우가 발생한다 (비디오 코덱 때문에)"
+    ** loop 와 autoPlay 를 사용하여, 자동재생, 반복재생이 되게 한다.
+    ** video 는 그저, 껍데기일뿐, 안에 source 를 통해, 파일의 src에 접근한다.
+
+
+2. svg, img, background-image
+
+    1) svg 는 "src" 폴더 안에 있어야 작동한다. 후에, import 하여, src 에 붙여넣는다.
+    2) img 는 "public" 폴더 안에 있어야 작동한다. 후에, 평소처럼 src 에 상대경로를 넣는다.
+    3) background-image 는, "절대경로" 로 지정해야 한다. "/public/image/main-image/.../image.jpg"
+
+
+    < svg >
+        import github from "../skills-svg/github.svg";  // svg
+
+        const LayoutFooter = () => {
+        return (
+            <ul className={styles.ul}>
+                <li>
+                    <a href="https://github.com/mysungsik">
+                        <img src={github} alt={"깃헙"} />   // svg
+                    </a>
+    < img >
+
+            <img src="/mainpage/icons8-question-mark-100.png"   // img
+                alt={"question-mark"} />
+
+    < background-img : CSS>
+
+        background-image: url("/public/image/main-image/.../image.jpg");    // 시작이 public
+
+
+
+3. 이미지를 클릭하면, 글이 나오는, 카드 만들기
+
+    클릭 - 클래스 이름 변경 - 각 클래스 별 다른 설정
+
+    1) 일단 컴포넌트에 글을 싹 다 적는다,
+    2) 클래스에, 백그라운드 이미지를 설정한다.
+    3) 버튼을 누르면 클래스 이름이 변경되고, 클래스 이름에 따른, 것을 보여준다.
+
+    ** imgOn 클래스의 경우, background
+
+
+    < 컴포넌트 >
+        const [imgOn, setImgOn] = useState<boolean>(true);
+
+        const Component = ()=> {
+                ...
+            const changeStyle = () => {
+                setImgOn((prev) => !prev);
+            };
+                let msStyle;
+            
+            if (imgOn) {
+                msStyle = styles.imgOn;
+            } else {
+                msStyle = styles.imgOff;
+            }
+
+            return (
+                ...
+                <div className={msStyle} onClick={changeStyle}>
+
+    < CSS >
+        .imgOn {
+            width: 10rem;
+            height: 10rem;
+            background-color: antiquewhite;
+            color: black;
+-           background-image: url("/public/images/introduce/icons8-user-100.png");
+        }
+        .imgOff {
+            width: 10rem;
+            height: 10rem;
+            background-color: antiquewhite;
+            color: black;
+-           background-image: none;
+        }
+
+4. 부드럽게 움직이는 트랜지션
+    .entering {
+        opacity: 0;
+    }
+    .entered {
+        animation: popup 400ms ease-out;
+    }
+    .exiting {
+        animation: unpopup 400ms ease-out;
+    }
+    .exited {
+        opacity: 0;
+    }
+    
+    @keyframes popup {
+        0% {
+        opacity: 0;
+        }
+        100% {
+        opacity: 1;
+        }
+    }
+    
+    @keyframes unpopup {
+        0% {
+        opacity: 1;
+        }
+        100% {
+        opacity: 0;
+        }
+    }
+    
+5. 스크롤 하면 보이는, 애니메이션을 만들어보았다.
+
+    <react-animation-on-scroll>
+
+        react-animation-on-scroll : https://github.com/MetinArslanturk/react-animation-on-scroll
+        Animate.css :   https://animate.style/
+
+        npm install react-animation-on-scroll --save
+        npm install --save animate.css
+
+    < 사용 >
+
+        import { AnimationOnScroll } from "react-animation-on-scroll";
+        import "animate.css/animate.min.css";
+
+        const Component = ()=>{
+                ...
+            return(
+                        ...
+                <AnimationOnScroll animateIn="animate__fadeIn" duration={3}>
+                    <img src="/mainpage/section1-desc-img.jpg" alt={"description"} />
+                </AnimationOnScroll>
+                        ...
+                )
+        }
+
+    < 옵션 >
+
+        DOCS 를 보면
+
+            1. offset - default 150
+                : The "viewport" is by default 150 pixels from the top and bottom of the screen. When part of an element is within the "viewport", animateIn is triggered. When no part of the element is in the "viewport", animateOut is triggered. This size of the "viewport" can be overridden by setting the offset property.
+
+            2. animateIn
+                : Any css animation defined against a class, be it from animate.css or an animation that you have created yourself. The Animation triggers when the element enters the "viewport" (see offset property for more details on this).
+
+            3. animateOut
+                : Any css animation defined against a class, be it from animate.css or an animation that you have created yourself. The Animation triggers when the element is leaving the "viewport" (see offset property for more details on this).
+
+            4. duration - default 1
+                :  Animation duration in seconds.
+
+            5. initiallyVisible - default false
+                : Whether the element should be visible to begin with or not. Recomending to set true if you have got server-side rendering.
+
+            6. delay - default 0
+                : How long to delay the animation for (in milliseconds) once it enters or leaves the view.
+
+            7. animateOnce - default false
+                : Whether the element should only animate once or not.
+
+            8. style - default {}
+                : A style object can be assigned to any ScrollAnimation component and will be passed to the rendered dom element. Its probably best to avoid manually setting animationDuration or opacity as the component will modify those attributes.
+
+            9. scrollableParentSelector
+                : By default the code checks to see if the element is visible within the window. This can be changed to any other parent element of the ScrollAnimation by adding a css selector pointing to the parent that you wish to use.
+
+            10. afterAnimatedIn
+                : Callback function to run once the animateIn animation has completed. Receives the visibility of the element at time of execution. Example:
+
+
+    < 애니메이션의 선택 >
+
+        [예시]
+
+                <AnimationOnScroll animateIn="animate__fadeIn" duration={3}>
+                    <h2> 이게 흔들린다! </h2>
+                </AnimationOnScroll>
+
+        ** animateIn="animate__fadeIn"  
+            => fadeIn 애니메이션을 사용하겠다는 말이다.
+
+            https://animate.style/
+
+        사이트에 접속하면, 우측에, 애니메이션 이름이 쭉 나온다. 원하는 것을 골라 쓰도록 한다.
+
+        <AnimationOnScroll animateIn="animate__slideInDown" duration={1} delay={300}>
+        <AnimationOnScroll animateIn="animate__zoomOutLeft" duration={0.5}>
+        <AnimationOnScroll animateIn="animate__rotateOut" duration={3}>
+                ...
+
+
+        ** animateOut 을 통해, 사라지는 것도 표현 가능하다. 방법은 똑같다.
+
+        
+6. background-attachment 를 통해, 예쁘게 내려가는 백그라운드 이미지 만들어보자.
+
+    https://gahyun-web-diary.tistory.com/47

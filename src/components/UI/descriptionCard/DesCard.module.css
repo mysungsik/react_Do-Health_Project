@@ -1,5 +1,6 @@
 /* 메인 카드 */
 .main_card {
+  margin-top: 5rem;
   text-align: center;
 }
 
@@ -14,7 +15,6 @@
   margin: 0 auto;
   display: flex;
   justify-content: center;
-  border: 1px solid;
 }
 
 /* 설명칸 텍스트칸 Div */
@@ -23,20 +23,17 @@
   list-style: none;
   text-align: left;
   padding: 2rem;
-  border: 1px solid;
 }
 
 .main_desc_text_ul li {
   margin: 1rem;
-  text-align: left;
-  border: 1px solid;
+  text-align: center;
 }
 
 /* 설명칸 이미지칸 */
 .main_desc_img_div {
   padding: 1rem;
   overflow: hidden;
-  border: 1px solid;
 }
 
 /* 설명칸 이미지칸 안의 이미지 */
@@ -47,13 +44,22 @@
 }
 
 /* 유의사항 DIV */
+.main_warning_div {
+  padding-bottom: 8em;
+}
 
+/* 유의사항 Title */
 .main_warning_div p {
   font-size: 3rem;
 }
 
+/* 유의사항 ul */
 .main_warning_lists {
   list-style: none;
-  border: 1px solid;
   padding: 0;
+}
+
+/* 유의사항 개별항목 */
+.main_warning_lists li {
+  margin: 1rem 0;
 }

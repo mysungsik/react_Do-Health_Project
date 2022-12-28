@@ -1,0 +1,59 @@
+.main_div {
+  margin-top: 7rem;
+}
+
+/* 메인 타이틀 */
+.main_title_text {
+  width: 100%;
+  padding: 3rem;
+  background-color: var(--loss-weight-parts-intro-background-color);
+  padding-left: 7rem;
+  z-index: -1;
+  color: white;
+}
+
+/* 메인 타이틀 텍스트 */
+.main_title_textP {
+  display: flex;
+  align-items: center;
+  font-size: 3rem;
+}
+
+/* 메인 타이틀 텍스트 "-" */
+.main_title_textP span {
+  display: inline-block;
+  margin-left: 0.5rem;
+  font-weight: 700;
+  font-size: 3rem;
+}
+
+/* 메인 타이틀 이미지 */
+.main_title_img {
+  position: absolute;
+  right: 10%;
+  top: 13rem;
+  z-index: 1;
+}
+
+.main_title_img img {
+  width: 30rem;
+  height: 40rem;
+  border-radius: 30px;
+}
+
+/* 작은 설명텍스트들 DIV */
+.main_description {
+  margin-top: 5rem;
+  margin-left: 15%;
+  margin-bottom: 6rem;
+}
+
+/* 크로스 라인 */
+.cross_line_green {
+  position: relative;
+  background-color: var(--loss-weight-parts-intro-background-color);
+  height: 3rem;
+  margin: 1.5rem 0;
+  border: none;
+  z-index: 2;
+}

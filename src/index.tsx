@@ -3,14 +3,18 @@ import "./index.css";
 import App from "./App";
 import { BrowserRouter } from "react-router-dom";
 import Layout from "./components/UI/layout/layout";
+import { Provider } from "react-redux";
+import { store } from "./store";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
 );
 root.render(
-  <BrowserRouter>
-    <Layout>
-      <App />
-    </Layout>
-  </BrowserRouter>
+  <Provider store={store}>
+    <BrowserRouter>
+      <Layout>
+        <App />
+      </Layout>
+    </BrowserRouter>
+  </Provider>
 );

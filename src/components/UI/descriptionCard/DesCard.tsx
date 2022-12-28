@@ -1,10 +1,11 @@
 import styles from "./DesCard.module.css";
+import { AnimationOnScroll } from "react-animation-on-scroll";
 
 export type Exr = {
   name: string;
   img: string;
-  des: string[];
-  warn: string[];
+  des: { id: number; text: string }[];
+  warn: { id: number; text: string }[];
 };
 
 const DesCard: React.FC<Exr> = (props) => {
@@ -19,12 +20,12 @@ const DesCard: React.FC<Exr> = (props) => {
 
       <div className={styles.main_desc_div}>
         <ul className={styles.main_desc_text_ul}>
-          {des.map((text) => (
-            <li> {text}</li>
+          {des.map((item) => (
+            <li key={item.id}> {item.text}</li>
           ))}
         </ul>
         <div className={styles.main_desc_img_div}>
-          <img src={img}></img>
+          <img src={img} alt={"img"}></img>
         </div>
       </div>
 
@@ -33,8 +34,10 @@ const DesCard: React.FC<Exr> = (props) => {
       <div className={styles.main_warning_div}>
         <p> 유의사항</p>
         <ul className={styles.main_warning_lists}>
-          {warn.map((text) => (
-            <li> {text}</li>
+          {warn.map((item) => (
+            <AnimationOnScroll animateIn="animate__bounceIn" key={item.id}>
+              <li key={item.id}> {item.text}</li>
+            </AnimationOnScroll>
           ))}
         </ul>
       </div>

@@ -1,6 +1,3 @@
-
-
-
 1. 설치
 
     1) React-router-dom
@@ -16,6 +13,10 @@
     4) react-transition-group
         npm i --save-dev @types/react-transition-group // 이게 타입스크립트꺼인듯
 
+    5) react-animation-on-scroll
+        npm install react-animation-on-scroll --save
+        npm install --save animate.css
+
 2. 우선 UI 부터 전부 작업 시작
 
     1) "mainpage 작업"
@@ -26,6 +27,7 @@
 3. 스크롤 애니메이션 작업 완
 
 4. MainPage UI 완료
+    react-animation-on-scroll 과 react-transition-group 을 적절히 사용한다.
 
 5. HOW-to-work Page 작성
 
@@ -51,7 +53,7 @@
                     |
                     |---- choose-parts.tsx          // 기본
                     |
-                    |---- default-description.tsx   // 기본 (버튼 선택 전까지)
+                    |---- 0. default-description.tsx   // 기본 (버튼 선택 전까지)
                     |
                     |
                     |---- 1.chest-part-description  // 버튼선택시
@@ -64,3 +66,262 @@
                     |---- 2.back-part-description   // 버튼선택시
                     |       * (0.all-parts-description.module.css)  // css동일
                         ...
+
+6. 변환 동작 구현 [ 총 코드 정리]
+
+    [1. 리덕스툴킷 슬라이스 "store/choose-part-slice.tsx" ]
+
+        import { createSlice } from "@reduxjs/toolkit";
+
+        export type PartState = {       // 반드시 객체안에, 한번 담아서, 한번에 초기화가 가능하게 만든다.
+            descriptionState: {         // State 를 reducer 에서 바로 사용하면 Proxy 가 생기는 오류가 발생한다.
+                onDefaultPart: boolean;
+                onChestPart: boolean;
+                    ...
+                onLegsPart: boolean;
+                onGlutesPart: boolean;
+            };
+        };
+
+        const initialState: PartState = {
+            descriptionState: {
+                onDefaultPart: true,
+                onChestPart: false,
+                    ...
+                onLegsPart: false,
+                onGlutesPart: false,
+            },
+        };
+
+        const ChoosPartsSlice = createSlice({
+            name: "choose-part",
+            initialState,
+            reducers: {
+                ChestDescription(state) {
+                state.descriptionState = { ...initialState.descriptionState };  // State 를 바로 사용하지 않고, 한번 넣어 사용했기에 가능하다.
+                state.descriptionState.onDefaultPart = false;                   // 디폴트는 없애고
+                state.descriptionState.onChestPart = true;                      // 각각에 맞는 State 를 업데이트한다.
+                },
+                        ...
+                LegsDescription(state) {
+                state.descriptionState = { ...initialState.descriptionState };
+                state.descriptionState.onDefaultPart = false;
+                state.descriptionState.onLegsPart = true;
+                },
+                GlutesDescription(state) {
+                state.descriptionState = { ...initialState.descriptionState };
+                state.descriptionState.onDefaultPart = false;
+                state.descriptionState.onGlutesPart = true;
+                },
+            },
+        });
+
+        export const ChooseActions = ChoosPartsSlice.actions;
+
+        export default ChoosPartsSlice.reducer;
+
+    [2. 스토어 생성 "store/index.tsx" ]
+        import { configureStore } from "@reduxjs/toolkit";
+        import choosePartSlice from "./choose-part-slice";
+
+        export const store = configureStore({
+            reducer: { choosePart: choosePartSlice },
+        });
+
+        export type RootState = ReturnType<typeof store.getState>;
+        export type AppDispatch = typeof store.dispatch;
+
+    [3. 스토어 등록 "index.tsx"]
+
+        import ReactDOM from "react-dom/client";
+        import "./index.css";
+        import App from "./App";
+        import { BrowserRouter } from "react-router-dom";
+        import Layout from "./components/UI/layout/layout";
+        import { Provider } from "react-redux";
+        import { store } from "./store";
+
+        const root = ReactDOM.createRoot(
+        document.getElementById("root") as HTMLElement
+        );
+        root.render(
+            <Provider store={store}>
+                <BrowserRouter>
+                <Layout>
+                    <App />
+                </Layout>
+                </BrowserRouter>
+            </Provider>
+        );
+
+
+    [4. 파트 선택 컴포넌트 "components/how-to-workout/choose-parts.tsx"]
+
+        import styles from "./choose-parts.module.css";
+        import { useCallback } from "react";
+        import { useDispatch } from "react-redux";
+        import { ChooseActions } from "../../store/choose-part-slice";
+
+        const ChooseParts = () => {
+            const dispatch = useDispatch();                     // dispatch 사용
+
+            const onChestHandler = useCallback(() => {
+                dispatch(ChooseActions.ChestDescription());     // useCallback 과 함께, actions, dispatch
+            }, [dispatch]);
+                        ...
+
+            const onLegsHandler = useCallback(() => {
+                dispatch(ChooseActions.LegsDescription());
+            }, [dispatch]);
+            const onGlutesHandler = useCallback(() => {
+                dispatch(ChooseActions.GlutesDescription());
+            }, [dispatch]);
+
+            return (
+                        ...
+
+                <ul className={styles.select_parts}>
+                    <li onClick={() => onChestHandler()}>       // 각각의 li 에 리스너 등록
+                        <div className={styles.parts_text}>
+                            <img src="/2.parts/torso.png" alt="torso" />
+                            <p>가슴</p>
+                        </div>
+                        <div className={styles.parts_img}>
+                            <img src="/2.parts/icons8-circled-right-100.png" alt="arrow" />
+                        </div>
+                    </li>
+                            ...
+
+                    <li onClick={() => onShoulderHandler()}>
+                        <div className={styles.parts_text}>
+                            <img src="/2.parts/shoulders.png" alt="back" />
+                            <p>어깨</p>
+                        </div>
+                        <div className={styles.parts_img}>
+                            <img src="/2.parts/icons8-circled-right-100.png" alt="arrow" />
+                        </div>
+                    </li>
+                    <li onClick={() => onBicepsHandler()}>
+                        <div className={styles.parts_text}>
+                            <img src="/2.parts/biceps.png" alt="biceps" />
+                            <p>이두</p>
+                        </div>
+                        <div className={styles.parts_img}>
+                            <img src="/2.parts/icons8-circled-right-100.png" alt="arrow" />
+                        </div>
+                    </li>
+                            ...
+
+    [5. Page 에서, State 에 따라 다른 컴포넌트 렌더 "/pages/2.how-to-workout.jsx"]
+
+        import ChooseParts from "../components/2.how-to-workout/choose-parts";
+        import DefaultDes from "../components/2.how-to-workout/default-description";
+        import ChestPartDes from "../components/2.how-to-workout/1.chest-part-description";
+                        ...
+        import LegsPartDes from "../components/2.how-to-workout/7.legs-part-description";
+        import GlutesPartDes from "../components/2.how-to-workout/8.glutes-part-description";
+   
+        import { useSelector } from "react-redux";
+        import { RootState } from "../store";
+
+        const HowToWorkOut = () => {
+            const chooseDescription = useSelector((state: RootState) => state.choosePart);  // state 를 빼서 사용
+
+            return (
+                <div>
+                    <ChooseParts />
+                    {chooseDescription.descriptionState.onDefaultPart && <DefaultDes />}
+                    {chooseDescription.descriptionState.onChestPart && <ChestPartDes />}
+                                ...
+                    {chooseDescription.descriptionState.onLegsPart && <LegsPartDes />}
+                    {chooseDescription.descriptionState.onGlutesPart && <GlutesPartDes />}
+                </div>
+            );
+        };
+
+        export default HowToWorkOut;
+
+    [6. 렌더되는 Descripion "components/how-to-work-out/1.chest-part-description.tsx" ... 등]
+
+            import DesCard from "../UI/descriptionCard/DesCard";        // 카드 아웃소싱
+            import styles from "./0.all-parts-description.module.css";
+
+            const ChestPartDes = () => {
+                return (
+                    <div className={styles.main_div}>
+                        <DesCard
+                            name={"벤치프레스"}
+                            img={"/2.parts/do-parts/graham-mansfield-rkBkXqlfRRo-unsplash.jpg"}
+                            des={[
+                                { id: 1, text: "팔꿈치와 명치 사이의 수직 각도" },
+                                { id: 2, text: "충분한 허리의 아치각도 유지하기" },
+                            ]}
+                            warn={[
+                                { id: 1, text: "팔꿈치와 명치 사이의 수직 각도" },
+                                { id: 2, text: "충분한 허리의 아치각도 유지하기" },
+                            ]}
+                        />
+                    </div>
+                );
+            };
+
+            export default ChestPartDes;
+
+    [ 7. 실제로 화면에 보이는 [운동 방법 카드] "/components/UI/descriptionCard/DesCard.tsx"]
+
+        import styles from "./DesCard.module.css";
+        import { AnimationOnScroll } from "react-animation-on-scroll";
+
+        export type Exr = {     // 타입 정하기
+            name: string;
+            img: string;
+            des: { id: number; text: string }[];
+            warn: { id: number; text: string }[];
+        };
+
+        const DesCard: React.FC<Exr> = (props) => {
+            const { name, img, des, warn } = props;
+            return (
+                <div className={styles.main_card}>
+                    <div className={styles.title_div}>
+                        <p>{name}</p>
+                    </div>
+
+                    {/* Description Part */}
+
+                    <div className={styles.main_desc_div}>
+                        <ul className={styles.main_desc_text_ul}>
+                            {des.map((item) => (
+                                <li key={item.id}> {item.text}</li>
+                            ))}
+                        </ul>
+                        <div className={styles.main_desc_img_div}>
+                            <img src={img} alt={"img"}></img>
+                        </div>
+                    </div>
+
+                    {/* Warning Part */}
+
+                    <div className={styles.main_warning_div}>
+                        <p> 유의사항</p>
+                        <ul className={styles.main_warning_lists}>
+                            {warn.map((item) => (
+                                <AnimationOnScroll animateIn="animate__bounceIn" key={item.id}>     // 애니메이션 적용
+                                    <li key={item.id}> {item.text}</li>
+                                </AnimationOnScroll>
+                            ))}
+                        </ul>
+                    </div>
+                </div>
+            );
+        };
+
+        export default DesCard;
+
+
+7. 사진들 포토샵으로 용량 줄이기 완료
+
+8. 소모 칼로리 페이지 시놉시스 정도 작성
+
+9. 소모 칼로리 페이지 UI 작업 시작
+    radio 버튼 사용

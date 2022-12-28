@@ -1,0 +1,75 @@
+1. 리덕스 스테이트를 사용할때, [State 에 바로 접근 하는 것은 불가능]하다.
+
+    <슬라이스>
+        const ChoosPartsSlice = createSlice({
+            name: "choose-part",
+            initialState,
+            reducers: {
+                ChestDescription(state) {
+                    state = {...initialState}   // state 에 바로접근하면 Porxy 가 나올 뿐이다.
+                },
+                BackDescription(state) {
+                    state = {...initialState}  // state 에 바로접근하면 Porxy 가 나올 뿐이다.
+                },
+            },
+        });
+
+        export const ChooseActions = ChoosPartsSlice.actions;
+
+        export default ChoosPartsSlice.reducer;
+
+
+    [추가사항] ===================================================================================================================
+
+        그러므로, 한번에, 초기화를 시키려면, 애초에 State 를 만들 때, 
+            객체안에 혹은 배열안에 한번 집어 넣어 감싼 후 초기 조건을 만들어야 좋다
+
+        <기존 initialState = 전체를 전부 바꾸려 해도, 하나씩 전부 초기화해야함 >
+
+                const initialState: Partial<PartState> = {
+                    onDefaultPart: true,
+                    onChestPart: false,
+                    onBackPart: false,
+                };
+                
+                const ChoosPartsSlice = createSlice({
+                    name: "choose-part",
+                    initialState,
+                    reducers: {
+                    ChestDescription(state) {
+                        state.onDefaultPart = false;
+                        state.onBackPart = false;
+                        state.onChestPart = true;
+                    },
+                    BackDescription(state) {
+                        state.onDefaultPart = false;
+                        state.onChestPart = false;
+                        state.onBackPart = true;
+                    },
+        < 변경후 initialState = 전체를 한번에 바꿀 수 있음>
+
+                const initialState: PartState = {       // 한번 객체에 집어넣어서
+                    descriptionState: {
+                        onDefaultPart: true,
+                        onChestPart: false,
+                        onBackPart: false,
+                    },
+                };
+
+                const ChoosPartsSlice = createSlice({   // state 를 바로 사용하지 않게 한다.
+                    name: "choose-part",
+                    initialState,
+                    reducers: {
+                        ChestDescription(state) {
+                            state.descriptionState = { ...initialState.descriptionState };
+                            state.descriptionState.onDefaultPart = false;
+                            state.descriptionState.onChestPart = true;
+                        },
+                        BackDescription(state) {
+                            state.descriptionState = { ...initialState.descriptionState };
+                            state.descriptionState.onDefaultPart = false;
+                            state.descriptionState.onBackPart = true;
+                        },
+                    },
+
+===================================================================================================================

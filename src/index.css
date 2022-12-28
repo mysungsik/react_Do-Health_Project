@@ -3,8 +3,8 @@
 html {
   --main-background-color: rgb(29, 29, 75);
   --main-background-color-trans8: rgba(29, 29, 75, 0.8);
-  --main-background-color-more-blue:rgb(9, 9, 124);
-  --main-background-color-more-blue-trans8:rgba(11, 11, 114, 0.8);
+  --main-background-color-more-blue: rgb(9, 9, 124);
+  --main-background-color-more-blue-trans8: rgba(11, 11, 114, 0.8);
 
   --main-content-color: rgba(255, 252, 241);
   --main-content-color-trans8: rgba(255, 252, 241, 0.8);
@@ -22,7 +22,8 @@ html {
 
   --footer-background-color: gray;
 
-  --do-parts-decription-main-background-color:rgb(255, 85, 0);
+  --do-parts-decription-main-background-color: rgb(255, 85, 0);
+  --loss-weight-parts-intro-background-color: rgb(39, 132, 110);
 }
 
 body {

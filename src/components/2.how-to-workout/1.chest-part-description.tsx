@@ -7,8 +7,28 @@ const ChestPartDes = () => {
       <DesCard
         name={"벤치프레스"}
         img={"/2.parts/do-parts/graham-mansfield-rkBkXqlfRRo-unsplash.jpg"}
-        des={["조심", "또조심"]}
-        warn={["조심조심,", "도솜"]}
+        des={[
+          { id: 1, text: "팔꿈치와 명치 사이의 수직 각도" },
+          { id: 2, text: "충분한 허리의 아치각도 유지하기" },
+        ]}
+        warn={[
+          { id: 1, text: "팔꿈치와 명치 사이의 수직 각도" },
+          { id: 2, text: "충분한 허리의 아치각도 유지하기" },
+        ]}
+      />
+      <hr className={styles.cross_orange_line} />
+      <hr className={styles.cross_orange_line} />
+      <DesCard
+        name={"체스트 프레스"}
+        img={"/2.parts/do-parts/graham-mansfield-rkBkXqlfRRo-unsplash.jpg"}
+        des={[
+          { id: 1, text: "팔꿈치와 명치 사이의 수직 각도" },
+          { id: 2, text: "충분한 허리의 아치각도 유지하기" },
+        ]}
+        warn={[
+          { id: 1, text: "팔꿈치와 명치 사이의 수직 각도" },
+          { id: 2, text: "충분한 허리의 아치각도 유지하기" },
+        ]}
       />
     </div>
   );

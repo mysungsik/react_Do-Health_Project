@@ -4,7 +4,6 @@ const LayoutFooter = () => {
   return (
     <div className={styles.main_footer}>
       <div className={styles.footer_logo}>
-        <img src="/main-logo.png" alt="logo" />
         <h3> DO.HEALTH</h3>
       </div>
       <ul className={styles.footer_menu}>

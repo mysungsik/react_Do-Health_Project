@@ -1,0 +1,66 @@
+
+
+
+1. 설치
+
+    1) React-router-dom
+        npm i react-router-dom@5
+        npm i --save-dev @types/react-router-dom@5   // 이게 타입스크립트
+
+    2) react-redux
+        npm install react-redux
+
+    3) redux-toolkit
+        npm install @reduxjs/toolkit
+
+    4) react-transition-group
+        npm i --save-dev @types/react-transition-group // 이게 타입스크립트꺼인듯
+
+2. 우선 UI 부터 전부 작업 시작
+
+    1) "mainpage 작업"
+        Video
+
+    2) "header footer 작업"
+
+3. 스크롤 애니메이션 작업 완
+
+4. MainPage UI 완료
+
+5. HOW-to-work Page 작성
+
+    [일단 파츠(부위)별 컴포넌트를 전부 만든다.]
+
+        "HowToWorkOut Page" 는
+        "Choose Part 컴포넌트" , "Descripion 컴포넌트" 로 구성
+
+        "Choose Part 컴포넌트" 는 기본적으로 "디폴트 Description" 이 같이 렌더
+        "Choose Part 컴포넌트" 에서 "해당 부위의 버튼을 누르면"
+        " 해당 부위의 Description"이 "렌더된다."
+
+        [리덕스]를 이용하여, 리덕스를 이용하여, State 를 만들어서, 
+            "Choose Part 컴포넌트"에서, 버튼을 누르면,  "HowToWorkOut Page" 에서, 받아, 다른 것을 렌더하는 형식으로 하자
+
+        [ Descripion 이 바뀔때는, React-Transition-Group 을 사용하여]
+            마치 슬라이드 되듯 넘어가는 화면을 구축해보자
+
+                
+        < 워크 플로우 >
+
+            [HowToWorkOut Page]
+                    |
+                    |---- choose-parts.tsx          // 기본
+                    |
+                    |---- default-description.tsx   // 기본 (버튼 선택 전까지)
+                    |
+                    |
+                    |---- 1.chest-part-description  // 버튼선택시
+                    |       * (0.all-parts-description.module.css) // css동일
+                    |           |
+                    |           |
+                    |           ---- DesCard.tsx (동적 카드)
+                    |       
+                    |
+                    |---- 2.back-part-description   // 버튼선택시
+                    |       * (0.all-parts-description.module.css)  // css동일
+                        ...

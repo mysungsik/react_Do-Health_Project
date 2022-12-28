@@ -1,4 +1,5 @@
 import styles from "./Intro.module.css";
+import { Link } from "react-router-dom";
 
 const Intro = () => {
   return (
@@ -17,7 +18,9 @@ const Intro = () => {
         </h1>
       </section>
       <section className={styles.main_Intro_buttons}>
-        <button className="White_Button"> 헬스 방법 알아보기 + </button>
+        <button className="White_Button">
+          <Link to={"/work-out"}>헬스 방법 알아보기 +</Link>
+        </button>
         <button className="Blue_Button"> 체중 줄여보기 - </button>
         <button className="White_Button"> 식단 알아보기 - </button>
       </section>

@@ -4,7 +4,7 @@
   height: 7rem;
   display: flex;
   justify-content: space-between;
-  background-color: var(--main-background-color-trans8);
+  background-color: var(--footer-background-color);
   color: white;
 }
 

@@ -44,13 +44,13 @@
   margin-top: 8rem;
 }
 
+/* 각각 버튼들 */
 .main_Intro_buttons button {
   margin: 1rem;
-  transition: all 100ms ease-out;
 }
 
-.main_Intro_buttons button:hover {
-  cursor: pointer;
-  opacity: 0.8;
-  transform: scale(1.02);
+/* 버튼 안의 Link 태그 */
+.main_Intro_buttons button a {
+  text-decoration: none;
+  color: inherit;
 }

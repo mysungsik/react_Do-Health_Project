@@ -1,0 +1,59 @@
+/* 메인 카드 */
+.main_card {
+  text-align: center;
+}
+
+/* 메인 카드 타이틀의 글자 */
+.title_div p {
+  font-size: 2rem;
+}
+
+/* 설명칸 전체 */
+.main_desc_div {
+  width: 70%;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  border: 1px solid;
+}
+
+/* 설명칸 텍스트칸 Div */
+.main_desc_text_ul {
+  width: 60%;
+  list-style: none;
+  text-align: left;
+  padding: 2rem;
+  border: 1px solid;
+}
+
+.main_desc_text_ul li {
+  margin: 1rem;
+  text-align: left;
+  border: 1px solid;
+}
+
+/* 설명칸 이미지칸 */
+.main_desc_img_div {
+  padding: 1rem;
+  overflow: hidden;
+  border: 1px solid;
+}
+
+/* 설명칸 이미지칸 안의 이미지 */
+.main_desc_img_div img {
+  width: 95%;
+  height: 45rem;
+  object-fit: cover;
+}
+
+/* 유의사항 DIV */
+
+.main_warning_div p {
+  font-size: 3rem;
+}
+
+.main_warning_lists {
+  list-style: none;
+  border: 1px solid;
+  padding: 0;
+}

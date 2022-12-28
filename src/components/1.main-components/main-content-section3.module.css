@@ -1,4 +1,5 @@
 /* 메인페이지 메인섹션3 전체 */
+/* 다른곳과는 다르게 width 가 지정되어있다. */
 .main_div {
   width: 70%;
   margin: 0 auto 0 auto;
@@ -32,9 +33,10 @@
 }
 
 /* 아래 예시 이미지 전체 */
+/* 전체 Div 가 70%이기 때문에, 얘는 100% */
 .how_to_workout_image_section {
   margin: 2rem auto;
-  width: 70%;
+  width: 100%;
   max-width: 60rem;
   height: 50rem;
   border-radius: 40px;

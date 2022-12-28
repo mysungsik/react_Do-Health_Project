@@ -3,10 +3,15 @@
 html {
   --main-background-color: rgb(29, 29, 75);
   --main-background-color-trans8: rgba(29, 29, 75, 0.8);
+  --main-background-color-more-blue:rgb(9, 9, 124);
+  --main-background-color-more-blue-trans8:rgba(11, 11, 114, 0.8);
 
   --main-content-color: rgba(255, 252, 241);
   --main-content-color-trans8: rgba(255, 252, 241, 0.8);
-  
+  --main-content-color-trans6: rgba(255, 252, 241, 0.6);
+  --main-content-color-trans4: rgba(255, 252, 241, 0.4);
+  --main-content-color-trans2: rgba(255, 252, 241, 0.2);
+
   --main-text-color: rgb(22, 22, 60);
 
   --section-desc-img-background-color-trans8: rgba(56, 56, 148, 0.8);
@@ -14,6 +19,10 @@ html {
   --section2-background-color-trans8: rgba(56, 56, 148, 0.8);
   --section3-background-color: rgba(255, 252, 241);
   --section3-background-color-trans8: rgba(255, 252, 241, 0.8);
+
+  --footer-background-color: gray;
+
+  --do-parts-decription-main-background-color:rgb(255, 85, 0);
 }
 
 body {
@@ -41,6 +50,13 @@ code {
   text-align: center;
   align-items: center;
   box-shadow: 1px 1px 3px rgba(255, 255, 255, 0.594);
+  transition: all 100ms ease-out;
+}
+
+.White_Button:hover {
+  cursor: pointer;
+  opacity: 0.8;
+  transform: scale(1.02);
 }
 
 .Blue_Button {
@@ -56,4 +72,11 @@ code {
   box-shadow: 1px 1px 3px rgba(255, 255, 255, 0.842);
   background-color: var(--main-text-color);
   color: var(--main-content-color);
+  transition: all 100ms ease-out;
+}
+
+.Blue_Button:hover {
+  cursor: pointer;
+  opacity: 0.8;
+  transform: scale(1.02);
 }

@@ -13,11 +13,18 @@
   z-index: 5;
 }
 
-/* 로고 */
+/* 로고Div (Link) */
 .header_logo {
   display: flex;
   align-items: center;
   margin-left: 2rem;
+  text-decoration: none;
+  color: inherit;
+  transition: all 200ms ease-out;
+}
+
+.header_logo:hover {
+  transform: scale(1.03);
 }
 
 /* 메뉴 우측 */

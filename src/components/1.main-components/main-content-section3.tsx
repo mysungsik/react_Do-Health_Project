@@ -54,7 +54,11 @@ const MainContentSection3 = () => {
           </div>
         </div>
         <div className={styles.how_to_workout_image_div}>
-          <AnimationOnScroll animateIn="animate__fadeIn" duration={3}>
+          <AnimationOnScroll
+            animateIn="animate__fadeIn"
+            className={styles.rightdown}
+            duration={3}
+          >
             <img src="/mainpage/section1-desc-img.jpg" alt={"description"} />
           </AnimationOnScroll>
         </div>

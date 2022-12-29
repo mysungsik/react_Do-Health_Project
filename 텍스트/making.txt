@@ -98,20 +98,20 @@
             initialState,
             reducers: {
                 ChestDescription(state) {
-                state.descriptionState = { ...initialState.descriptionState };  // State 를 바로 사용하지 않고, 한번 넣어 사용했기에 가능하다.
-                state.descriptionState.onDefaultPart = false;                   // 디폴트는 없애고
-                state.descriptionState.onChestPart = true;                      // 각각에 맞는 State 를 업데이트한다.
+                    state.descriptionState = { ...initialState.descriptionState };  // State 를 바로 사용하지 않고, 한번 넣어 사용했기에 가능하다.
+                    state.descriptionState.onDefaultPart = false;                   // 디폴트는 없애고
+                    state.descriptionState.onChestPart = true;                      // 각각에 맞는 State 를 업데이트한다.
                 },
                         ...
                 LegsDescription(state) {
-                state.descriptionState = { ...initialState.descriptionState };
-                state.descriptionState.onDefaultPart = false;
-                state.descriptionState.onLegsPart = true;
+                    state.descriptionState = { ...initialState.descriptionState };
+                    state.descriptionState.onDefaultPart = false;
+                    state.descriptionState.onLegsPart = true;
                 },
                 GlutesDescription(state) {
-                state.descriptionState = { ...initialState.descriptionState };
-                state.descriptionState.onDefaultPart = false;
-                state.descriptionState.onGlutesPart = true;
+                    state.descriptionState = { ...initialState.descriptionState };
+                    state.descriptionState.onDefaultPart = false;
+                    state.descriptionState.onGlutesPart = true;
                 },
             },
         });
@@ -324,4 +324,72 @@
 8. 소모 칼로리 페이지 시놉시스 정도 작성
 
 9. 소모 칼로리 페이지 UI 작업 시작
-    radio 버튼 사용
+    radio 버튼 사용해보았다.
+
+10. 소모 칼로리 페이지, 계산 할 때마다 튀어오르는 애니메이션 버튼 만들기, 버튼 css 조절해보기, 로직 아웃소싱하기 
+
+    < components / EstimateBMR.tsx > =============================================
+
+        import { FormEvent, useEffect, useRef, useState } from "react";
+
+        const EstimateBMR = () => {
+            const [buttonStyle, setButtonStyle] = useState<string>(
+                `${styles.answer_section_totalCal} animate__animated animate__bounce`       // 1. 시작은 바운스
+            );
+
+
+            useEffect(() => {
+                setButtonStyle(
+                `${styles.answer_section_totalCal} animate__animated animate__bounce`       // 2. 버튼스타일이 변경되면 바운스
+                );
+            }, [buttonStyle]);
+            
+            const justconsole = (event: FormEvent) => {
+                event.preventDefault();
+                setButtonStyle(`${styles.answer_section_totalCal}`);                        // 3. 제출하면, 바운스 제거
+                            ...
+            };
+
+            return (
+                        ...
+                    <div>
+                        <p className={styles.answer_section_textP}>
+                            당신의 하루 소비 칼로리 량
+                        </p>
+                        <h1 className={buttonStyle}>{AMR} kcal</h1>     // 바운스 스타일
+                    </div>
+
+            );
+        };
+
+        export default EstimateBMR;
+
+    <heper / calculate-logic.tsx > =============================================
+
+        export const CalculateFunction = ( sex: number, age: number, weight: number, tall: number, activity: number ) => {
+            let BMR;
+
+            if (sex === 1) {
+                BMR = 88.4 + 13.4 * weight + 4.8 * tall - 5.68 * age;
+            } else {
+                BMR = 447.6 + 9.25 * weight + 3.1 * tall - 4.33 * age;
+            }
+            const finalAMR = BMR * activity;
+
+            return finalAMR;
+        };
+
+
+    <index.css> ============================================================
+
+        /*  애니메이션  */
+
+        .animate__animated.animate__bounce {        // 하나하나 조절
+            --animate-delay: 0.1s;
+            --animate-duration: 700ms;
+        }
+
+        :root {     // 전부 조절
+
+        }
+

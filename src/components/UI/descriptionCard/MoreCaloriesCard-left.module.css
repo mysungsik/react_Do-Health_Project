@@ -11,7 +11,7 @@
 
 /* 설명칸 전체 */
 .main_desc_div {
-  width: 70%;
+  width: 80%;
   margin: 0 auto;
   display: flex;
   justify-content: center;
@@ -40,27 +40,7 @@
 /* 설명칸 이미지칸 안의 이미지 */
 .main_desc_img_div img {
   width: 95%;
-  height: 45rem;
+  height: 30rem;
   object-fit: cover;
-}
-
-/* 유의사항 DIV */
-.main_warning_div {
-  padding-bottom: 8em;
-}
-
-/* 유의사항 Title */
-.main_warning_div p {
-  font-size: 3rem;
-}
-
-/* 유의사항 ul */
-.main_warning_lists {
-  list-style: none;
-  padding: 0;
-}
-
-/* 유의사항 개별항목 */
-.main_warning_lists li {
-  margin: 1rem 0;
+  border-radius: 20px;
 }

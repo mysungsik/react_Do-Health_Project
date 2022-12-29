@@ -1,0 +1,90 @@
+.main_div {
+  margin-top: 10rem;
+  margin-left: 4rem;
+  margin-right: 4rem;
+}
+
+/* 타이틀 텍스트 */
+.main_div_title {
+  font-size: 4rem;
+}
+
+/* 폼 섹션  */
+.form_section {
+  padding: 3rem 0;
+  background-color: var(--loss-weight-parts-intro-background-color-lighter);
+}
+/* 폼섹션의 폼 */
+.form_section_form {
+  max-width: 45rem;
+  font-size: 1.5rem;
+  margin: 0 auto;
+  padding: 2rem;
+  border-radius: 20px;
+  background-color: white;
+  color: white;
+}
+
+/* 폼 섹션 하위 div */
+.form_section_form div {
+  display: flex;
+  justify-content: space-between;
+  margin: 0.7rem 0;
+}
+
+/* 폼 섹션의 Label */
+.form_section_form label {
+  color: var(--loss-weight-parts-intro-gray-color);
+  margin-left: 2rem;
+}
+
+/* 폼 섹션의 input */
+.form_section_form input {
+  width: 20rem;
+  text-align: right;
+  color: var(--loss-weight-parts-intro-gray-color);
+  border: none;
+}
+
+/* 폼 섹션의 select */
+.form_section_form select {
+  border: 1px solid;
+  width: 12rem;
+  text-align: right;
+  color: var(--loss-weight-parts-intro-gray-color);
+  border: none;
+}
+
+.form_section_form select option {
+  min-height: 1.5rem;
+}
+
+/* 버튼 div */
+.form_section_buttons {
+  margin-top: 2rem !important;
+  justify-content: center !important;
+}
+
+/* 결과 섹션  [  DIV ]*/
+.answer_section {
+  margin-left: 5rem;
+}
+
+/* 결과 섹션 [ 이미지와, 당신의 하루 소비 칼로리량 DIV] */
+.answer_section_title_div {
+  margin-left: 5%;
+  margin-top: 2rem;
+  display: flex;
+}
+/* 결과 섹션  [ 당신의 하루 소비 칼로리 량 ]*/
+.answer_section_textP {
+  font-size: 2rem;
+}
+
+/* 결과 섹션  [ XXX cal]*/
+.answer_section_totalCal {
+  margin-left: 16%;
+  font-weight: 600;
+  font-size: 2.2rem;
+  text-shadow: 1px 1px 3px rgba(100, 100, 100, 0.718);
+}

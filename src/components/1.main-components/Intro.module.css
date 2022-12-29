@@ -50,7 +50,3 @@
 }
 
 /* 버튼 안의 Link 태그 */
-.main_Intro_buttons button a {
-  text-decoration: none;
-  color: inherit;
-}

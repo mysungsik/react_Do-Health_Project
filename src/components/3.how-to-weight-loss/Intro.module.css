@@ -5,11 +5,14 @@
 /* 메인 타이틀 */
 .main_title_text {
   width: 100%;
-  padding: 3rem;
   background-color: var(--loss-weight-parts-intro-background-color);
-  padding-left: 7rem;
+  padding: 4rem 0;
   z-index: -1;
   color: white;
+}
+
+.main_title_text p{
+  margin-left: 5rem;
 }
 
 /* 메인 타이틀 텍스트 */
@@ -17,6 +20,8 @@
   display: flex;
   align-items: center;
   font-size: 3rem;
+  font-weight: 550;
+  margin-left: 5rem;
 }
 
 /* 메인 타이틀 텍스트 "-" */
@@ -30,7 +35,7 @@
 /* 메인 타이틀 이미지 */
 .main_title_img {
   position: absolute;
-  right: 10%;
+  right: 12%;
   top: 13rem;
   z-index: 1;
 }
@@ -56,4 +61,5 @@
   margin: 1.5rem 0;
   border: none;
   z-index: 2;
+  opacity: 0.8;
 }

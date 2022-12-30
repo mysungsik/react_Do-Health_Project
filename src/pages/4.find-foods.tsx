@@ -1,7 +1,11 @@
+import FoodsList from "../components/4.find-foods/1.Foods-List";
+import Intro from "../components/4.find-foods/Intro";
+
 const FindFoods = () => {
   return (
     <div>
-      <div>찾아라</div>
+      <Intro />
+      <FoodsList />
     </div>
   );
 };

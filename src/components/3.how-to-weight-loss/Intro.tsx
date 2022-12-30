@@ -7,8 +7,9 @@ const Intro = () => {
         <p className={styles.main_title_textP}>
           Do-Loss <span>-</span>
         </p>
-        <p> 체중조절을 위한 가장 똑똑한 선택</p>
+        <p> 체중조절을 위한 가장 스마트한 선택</p>
         <p> Do-Loss Program</p>
+        <hr className="cross_line_green" />
       </div>
       <div className={styles.main_title_img}>
         <img

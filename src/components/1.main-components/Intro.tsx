@@ -25,7 +25,9 @@ const Intro = () => {
         <button className="Blue_Button">
           <Link to={"/weight-loss"}>체중 줄여보기 -</Link>
         </button>
-        <button className="White_Button"> 식단 알아보기 - </button>
+        <button className="White_Button">
+          <Link to={"/find-foods"}>식단 알아보기 -</Link>
+        </button>
       </section>
     </div>
   );

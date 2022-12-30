@@ -14,10 +14,12 @@ const MoreCaloriesCard: React.FC<Exr> = (props) => {
   const refineTime = time.toFixed(1);
   return (
     <div className={styles.main_card}>
-      <div className={styles.title_div}>
-        <p>{name}</p>
-        <p> {refineTime}분 </p>
-      </div>
+      <AnimationOnScroll animateIn="animate__fadeInUp">
+        <div className={styles.title_div}>
+          <p>{name}</p>
+          <p> {refineTime}분 </p>
+        </div>
+      </AnimationOnScroll>
 
       {/* Description Part */}
 
@@ -30,7 +32,11 @@ const MoreCaloriesCard: React.FC<Exr> = (props) => {
           ))}
         </ul>
         <div className={styles.main_desc_img_div}>
-          <AnimationOnScroll animateIn="animate__fadeInRight" delay={400}>
+          <AnimationOnScroll
+            animateIn="animate__fadeInRight"
+            animateOut="animate__fadeOutDown"
+            delay={100}
+          >
             <img src={img} alt={"img"}></img>
           </AnimationOnScroll>
         </div>

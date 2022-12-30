@@ -58,6 +58,7 @@ const EstimateBMR = () => {
               <option value={2}> 여성 </option>
             </select>
           </div>
+          <hr className="cross_line_gray_normal" />
           <div>
             <label htmlFor="age"> 나이(만) </label>
             <input
@@ -68,6 +69,7 @@ const EstimateBMR = () => {
               ref={ageRef}
             />
           </div>
+          <hr className="cross_line_gray_normal" />
           <div>
             <label htmlFor="weight"> 몸무게(kg) </label>
             <input
@@ -78,6 +80,7 @@ const EstimateBMR = () => {
               ref={weightRef}
             />
           </div>
+          <hr className="cross_line_gray_normal" />
           <div>
             <label htmlFor="tall"> 키(cm) </label>
             <input
@@ -88,6 +91,7 @@ const EstimateBMR = () => {
               ref={tallRef}
             />
           </div>
+          <hr className="cross_line_gray_normal" />
           <div>
             <label htmlFor="activity"> 운동량을 선택하세요 </label>
             <select id="activity" required ref={activityRef}>
@@ -98,6 +102,7 @@ const EstimateBMR = () => {
               <option value={1.9}> 매우 적극적인 운동 (주 6~7회) </option>
             </select>
           </div>
+          <hr className="cross_line_gray_normal" />
           <div className={styles.form_section_buttons}>
             <button className="Just_Click_Button_Default"> 계산하기</button>
           </div>
@@ -106,7 +111,7 @@ const EstimateBMR = () => {
       {/* 결과 섹션 */}
       <section className={styles.answer_section}>
         <div>
-          <div  className={styles.answer_section_title_div}>
+          <div className={styles.answer_section_title_div}>
             <img src="/3.loss-weight/icons8-gymnastics-100.png" />
             <p className={styles.answer_section_textP}>
               당신의 하루 소비 칼로리 량

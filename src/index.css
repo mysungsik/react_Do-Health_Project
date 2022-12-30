@@ -23,7 +23,9 @@ html {
   --footer-background-color: gray;
 
   --do-parts-decription-main-background-color: rgb(255, 85, 0);
+
   --loss-weight-parts-intro-background-color: rgb(39, 132, 110);
+  --loss-weight-parts-intro-background-color-dark: rgb(21, 70, 59);
   --loss-weight-parts-intro-background-color-lighter: rgb(48, 160, 134);
   --loss-weight-parts-intro-background-color-lighter-trans8: rgb(
     48,
@@ -32,6 +34,9 @@ html {
     0.8
   );
   --loss-weight-parts-intro-gray-color: rgb(70, 70, 70);
+
+  --find-foods-parts-background-color: rgb(131, 131, 251);
+  --find-foods-parts-background-color-dark: rgb(60, 60, 117);
 }
 
 body {
@@ -151,6 +156,16 @@ code {
   opacity: 0.8;
 }
 
+/* 크로스 라인  Green-Dark */
+.cross_line_green {
+  position: relative;
+  background-color: var(--loss-weight-parts-intro-background-color-dark);
+  height: 4.5rem;
+  margin: 1.5rem 0;
+  border: none;
+  z-index: 2;
+}
+
 /* 크로스 라인  Green-rotate */
 .cross_line_green_rotate {
   position: relative;
@@ -163,4 +178,26 @@ code {
   transform: rotate(-5deg);
   width: 110%;
   margin-left: -2rem;
+}
+
+/* 크로스 라인  Purple-thick */
+.cross_line_purple_thick {
+  position: relative;
+  background-color: var(--find-foods-parts-background-color-dark);
+  height: 5rem;
+  margin: 0;
+  border: none;
+  z-index: 2;
+}
+
+/* 크로스 라인  Gray-normal */
+
+.cross_line_gray_normal {
+  width: 95%;
+  border: none;
+  border-bottom: 1px solid;
+  box-shadow: 1px 1px 1px rgb(106, 106, 106);
+  opacity: 0.5;
+  padding: 0;
+  margin: 0 auto;
 }

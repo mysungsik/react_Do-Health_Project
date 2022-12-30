@@ -49,6 +49,17 @@
 /*  불태워야하는 칼로리 섹션 전체 */
 .information_section {
   margin-top: 2rem;
+  margin-bottom: 5rem;
+}
+
+/* 크로스 그린 라인 div */
+.cross_line_div {
+  width: 100%;
+  overflow: hidden;
+  height: 20rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 /*  불태워야하는 칼로리 섹션, 추가 소모 칼로리 DIV  [ 불태워야하는 칼로리 DIV ]*/

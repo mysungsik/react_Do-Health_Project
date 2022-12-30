@@ -1,0 +1,62 @@
+.main_div {
+  margin-top: 7rem;
+  background-color: var(--find-foods-parts-background-color);
+  display: flex;
+  justify-content: space-between;
+}
+
+/* 메인 타이틀 Text 섹션 */
+.main_title_text_section {
+  width: 100%;
+  padding: 3rem 0;
+  z-index: 1;
+  color: white;
+}
+
+.main_title_text_section p {
+  margin-left: 5rem;
+}
+
+/* 메인 타이틀 텍스트  [ Do-Eat ] */
+.main_title_text_section_textP {
+  display: flex;
+  align-items: center;
+  font-size: 3rem;
+  font-weight: 550;
+  margin-left: 5rem;
+}
+
+/* 메인 타이틀 텍스트 [ - ] */
+.main_title_text_section_textP span {
+  display: inline-block;
+  margin-left: 0.5rem;
+  font-weight: 700;
+  font-size: 3rem;
+}
+
+/* 메인 타이틀 이미지 */
+.main_title_img_section {
+  margin: auto 0;
+  margin-right: 10%;
+}
+
+.main_title_img_section img {
+  width: 30rem;
+  height: 20rem;
+  z-index: 1;
+  object-fit: cover;
+  border-radius: 20px;
+}
+
+.sub_description {
+  color: white;
+  font-size: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sub_description img {
+  width: 3rem;
+  margin-right: 1rem;
+}

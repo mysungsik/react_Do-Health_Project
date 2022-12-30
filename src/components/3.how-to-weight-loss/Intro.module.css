@@ -6,12 +6,12 @@
 .main_title_text {
   width: 100%;
   background-color: var(--loss-weight-parts-intro-background-color);
-  padding: 4rem 0;
+  padding-top: 4rem;
   z-index: -1;
   color: white;
 }
 
-.main_title_text p{
+.main_title_text p {
   margin-left: 5rem;
 }
 
@@ -37,7 +37,7 @@
   position: absolute;
   right: 12%;
   top: 13rem;
-  z-index: 1;
+  z-index: 2;
 }
 
 .main_title_img img {

@@ -11,13 +11,15 @@ export type Exr = {
 const MoreCaloriesCardLeft: React.FC<Exr> = (props) => {
   const { name, img, des, time } = props;
 
-  const refineTime = time.toFixed(1)
+  const refineTime = time.toFixed(1);
   return (
     <div className={styles.main_card}>
-      <div className={styles.title_div}>
-        <p>{name}</p>
-        <p> {refineTime}분 </p>
-      </div>
+      <AnimationOnScroll animateIn="animate__fadeInUp">
+        <div className={styles.title_div}>
+          <p>{name}</p>
+          <p> {refineTime}분 </p>
+        </div>
+      </AnimationOnScroll>
 
       {/* Description Part */}
       <div className={styles.main_desc_div}>

@@ -326,7 +326,7 @@
 9. 소모 칼로리 페이지 UI 작업 시작
     radio 버튼 사용해보았다.
 
-10. 소모 칼로리 페이지, 계산 할 때마다 튀어오르는 애니메이션 버튼 만들기, 버튼 css 조절해보기, 로직 아웃소싱하기 
+10. 소모 칼로리 페이지, [계산 할 때마다 튀어오르는 애니메이션 버튼 만들기 with useEffect], 애니메이션 조절해보기(AnimatedCss 패키지 ), 로직 아웃소싱하기 
 
     < components / EstimateBMR.tsx > =============================================
 
@@ -335,7 +335,7 @@
         const EstimateBMR = () => {
             const [buttonStyle, setButtonStyle] = useState<string>(
                 `${styles.answer_section_totalCal} animate__animated animate__bounce`       // 1. 시작은 바운스
-            );
+            );                                                                              // ** module css와 global css 를 동시 사용
 
 
             useEffect(() => {
@@ -393,3 +393,332 @@
 
         }
 
+11. 칼로리 소모 페이지 UI 작업 끝
+
+12. 길게 hr 만들었는데, 화면을 튀어나가버린다. 어떻게하지?
+
+    ==> 그린 라인을 씌우는 div 를 만들어서 overflow를 넣는다.
+
+        /* 크로스 라인  Green-rotate */
+
+                .cross_line_green_rotate {
+                    position: relative;
+                    background-color: var(--loss-weight-parts-intro-background-color);
+                    height: 3rem;
+                    margin: 1.5rem 0;
+                    border: none;
+                    z-index: 2;
+                    opacity: 0.8;
+                    transform: rotate(-5deg);
+                    width: 110%;
+                    margin-left: -2rem;
+                }
+
+
+        // 크로스 그린 라인 div  [ 여러개의 크로스 라인 포함된 div ]
+
+                .cross_line_div {
+                    width: 100%;
+                    overflow: hidden;
+                    height: 20rem;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                }
+
+
+13. 식단 알아보기 페이지 작업 시작
+
+
+14. [ 데이터를 넣으면 자동으로 Card 가 만들어지는 페이지 작성]  식단 알아보기 페이지에서, 
+
+    1) "FoodCard 작성"
+
+        < UI / foodsCard / food-previewcard.tsx >
+
+            import styles from "./food-previewcard.module.css";
+
+            const FoodPreview: React.FC<{                       // 받아올 값들, 타입 지정
+                id: number;
+                img:string;
+                category: string;
+                title: string;
+                majorNutri: string;
+                nutri: string;
+                price: number;
+            }> = (props) => {
+            const { id, img, category, title, majorNutri, nutri, price } = props;    // 받아올 값들
+
+                return (
+                    <div className={styles.main_div}>
+                        <section className={styles.img_section}>
+                            <img src={img} />                       // 이미지
+                            <div className={styles.img_section_category}> {category}</div>  // 카테고리
+                        </section>
+                        <section className={styles.info_section}>
+                            <div className={styles.info_section_title}>
+                                <p> {title}</p>     // 타이틀
+                            </div>
+                            <div className={styles.info_section_info_detail}>
+                                <div className={styles.info_section_info_detail_category}>
+                                    {majorNutri}        // 메이저뉴트리
+                                </div>
+                                <div className={styles.info_section_info_detail_nutri_price}>
+                                    <p> {nutri}</p>     // 뉴트리
+                                    <p> {price}</p>     // 가격
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+                );
+            };
+
+            export default FoodPreview;
+
+    2) "ListData 를 넘겨준다."
+
+        < components / 4.find-foods / 1.Foods-List.tsx >
+
+            import FoodPreview from "../UI/foodsCard/food-previewcard";
+            import { useState } from "react";
+            
+            interface FoodType {        // 넘겨줄 FoodType 지정
+                id: number;
+                img:string;
+                category: string;
+                title: string;
+                majorNutri: string;
+                nutri: string;
+                price: number;
+            }
+            
+            const FoodsList = () => {        // 추후 FireBase DB 에서 fetch 해서 가져오도록 하자. 일단 샘플 데이터 두개
+                                            // 또한, 자동 Grid 를 통해, 자동 Grid 조정을 하게 만든다. (블로그참조)
+
+            const [foodsData, setFoodsData] = useState<FoodType[]>([        // "타입 지정 후" 일단 더미데이터 두개만 집어넣었다.
+                {
+                    id: 1,
+                    category: "다이어트",
+                    img:"/4.foods/claudio-schwarz-4qJlXK4mYzU-unsplash.jpg",
+                    title: "최고의 단백질 보충제 닭가슴살",
+                    majorNutri: "단백질+",
+                    nutri: "Protein 22g",
+                    price: 1000,
+                },
+                {
+                    id: 2,
+                    category: "벌크업",
+                    img:"/4.foods/claudio-schwarz-4qJlXK4mYzU-unsplash.jpg",
+                    title: "최고의 지방 보충제 아보카도",
+                    majorNutri: "지방+",
+                    nutri: "Fat 15g",
+                    price: 2000,
+                },
+                ]);
+
+                return (
+                    <div>
+                        {foodsData.map((food) => (          // Array.map() 을 통해, 모든 데이터를 한번에 넘기도록 한다.
+                            <FoodPreview
+                                key={food.id}
+                                id={food.id}
+                                img={food.img}
+                                category={food.category}
+                                title={food.title}
+                                majorNutri={food.majorNutri}
+                                nutri={food.nutri}
+                                price={food.price}
+                            />
+                        ))}
+                    </div>
+                );
+            };
+            export default FoodsList;
+            
+    3) 자동 Grid 형태의 CSS 작성
+
+        .main_grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(27rem, 1fr));
+        }
+        
+    4) 우측에 div 위치 calc 를 통해, 잘 조절
+
+        .select_category {
+            margin-left: calc(100% - 27rem);
+
+    * 그냥 65% 따위로 하면, div 의 width 때문에, 줄이면 넘어간다.
+
+15. 버튼 누르면 [ 양옆으로 하이라이트가 부드럽게 움직이는 ] 셀렉터 만들기
+
+    < 컴포넌트 >
+  
+        const FoodsList = () => {
+        
+            const [selected, setSelected] = useState<string>("탄수화물");
+            const [foodsData, setFoodsData] = useState<FoodType[]>([
+            {
+                id: 1,
+                        ...
+                price: 1000,
+            },
+            {
+                id: 2,
+                        ...
+            }
+            ]);
+        
+            let selected_style = styles.selected_hydro;     // 초기 하이라이트 백그라운드 조건
+            let text_highlight_hydro = "";                  // 초기 텍스트 조건
+            let text_highlight_protein = "";                // 초기 텍스트 조건
+            let text_highlight_fat = "";                    // 초기 텍스트 조건
+        
+            if (selected === "탄수화물") {
+                selected_style = styles.selected_hydro;                 // 선택시 클래스 변경 (하나의 div 좌우로 움직임)
+                text_highlight_hydro = styles.selected_text_hydro;      // 선택시 해당 클래스 이름 생성 ( 각각이 선택되면 각각에서 따로 켜짐 )
+            }
+            if (selected === "단백질") {
+                selected_style = styles.selected_protein;
+                text_highlight_protein = styles.selected_text_protein;
+            }
+            if (selected === "지방") {
+                selected_style = styles.selected_fat;
+                text_highlight_fat = styles.selected_text_fat;
+            }
+            return (
+                <div className={styles.main_div}>
+                    <ul className={styles.select_category}>
+                
+                        <div className={selected_style}></div>                  // 움직이는 백그라운드 div 
+
+                        <li onClick={() => setSelected("탄수화물")}>
+                            <p className={text_highlight_hydro}>탄수화물</p>    // 선택되면 적절한 className 이 켜진다.
+                        </li>
+                        <li onClick={() => setSelected("단백질")}>
+                            <p className={text_highlight_protein}>단백질</p>
+                        </li>
+                        <li onClick={() => setSelected("지방")}>
+                            <p className={text_highlight_fat}>지방</p>
+                        </li>
+                    </ul>
+    < CSS >
+
+            /* 하이라이트 Div 조건1 - 탄수화물  */
+            .selected_hydro {
+                position: absolute;
+                width: 8rem;
+                height: 2.5rem;
+                z-index: 1;
+                background-color: white;
+                margin-right: 18rem;
+                border-radius: 5px;
+                transition: all 400ms ease-out;
+                box-shadow: 1px 1px 4px black;
+            }
+
+            /* 하이라이트 Text 조건1 - 탄수화물  */
+            .selected_text_hydro {
+                font-weight: 600;
+                font-size: 1.1rem;
+                transition: all 600ms ease-out;
+            }
+
+            /* 하이라이트 Div 조건2 - 단백질  */
+            .selected_protein {
+                position: absolute;
+                width: 8rem;
+                height: 2.5rem;
+                z-index: 1;
+                background-color: white;
+                border-radius: 5px;
+                transition: all 400ms ease-out;
+                box-shadow: 1px 1px 4px black;
+            }
+
+            /* 하이라이트 Text 조건2 - 단백질  */
+            .selected_text_protein {
+                font-weight: 600;
+                font-size: 1.1rem;
+                transition: all 600ms ease-out;
+            }
+
+            /* 하이라이트 Div 조건3 - 지방  */
+            .selected_fat {
+                position: absolute;
+                width: 8rem;
+                height: 2.5rem;
+                z-index: 1;
+                background-color: white;
+                margin-left: 18rem;
+                border-radius: 5px;
+                transition: all 400ms ease-out;
+                box-shadow: 1px 1px 4px black;
+            }
+
+            /* 하이라이트 Text 조건3 - 지방  */
+            .selected_text_fat {
+                font-weight: 600;
+                font-size: 1.1rem;
+                transition: all 600ms ease-out;
+            }
+
+16. 선택한 Selected 를 바탕으로 [선택된 Data 만 따로 화면에 띄우기]
+
+
+        const [selected, setSelected] = useState<string>("탄수화물");
+        const [foodsData, setFoodsData] = useState<FoodType[]>([
+            {
+                id: 1,
+                        ...
+                price: 1000,
+            },
+            {
+                id: 2,
+                        ...
+            },
+        ]);
+
+        const [selectedFoods, setSelectedFoods] = useState<FoodType[]>([]);   // filter 될 FoodData
+
+        useEffect(() => {       // filter 되는 로직
+            setSelectedFoods(foodsData.filter((food) => food.majorNutri === selected));
+        }, [selected]);
+
+        return (
+            <div className={styles.main_grid}>
+                {selectedFoods.map((food) => (      // "selectedFoods" 로 Data 변경
+                    <FoodPreview
+                    key={food.id}
+                    id={food.id}
+                        ...
+                    )
+
+
+    ** 반드시 useEffect 를 사용하도록 하자.
+    ** "추후 데이터"는, "FireBase" 에서 온 것을 "App.tsx" 에서 받아서, "리덕스 툴킷" 으로 넘긴 다음, 사용 할 것이다.
+
+17. 파이어베이스로 DB 만들기 
+
+    1) 운동방법
+
+        [how-to-workout Page] -> [8개의 부위 Component 들] -> [각 Item은 DesCard 에 데이터]
+
+        DB "exercise"
+            // part : chest, back, shoulders, biceps, triceps, abs, legs, glutes
+            //  part, name, img, des:[id, text], warn:[id,text]
+            [ {part:chest, name:체스트프레스, img:"...", 
+                des  : [{id:1, text:"..."}, {id:2, text:"..."}], 
+                warn : [{id:1, text:"..."}, {id:2, text:"..."}],
+              },
+              {part:back, name:풀업, img:"...", 
+                des  : [{id:1, text:"..."}, {id:2, text:"..."}], 
+                warn : [{id:1, text:"..."}, {id:2, text:"..."}],
+              },
+              {part:triceps, name:킥백, img:"...", 
+                des  : [{id:1, text:"..."}, {id:2, text:"..."}], 
+                warn : [{id:1, text:"..."}, {id:2, text:"..."}],
+              },
+            
+            ]
+
+    2) 음식 리스트

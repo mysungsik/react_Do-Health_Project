@@ -3,6 +3,7 @@ import { FormEvent, useRef, useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "../../store";
 import { calculateActions } from "../../store/calculation";
+import { AnimationOnScroll } from "react-animation-on-scroll";
 
 import { MoreCaloriesFunction } from "../../helper/calculate-logic";
 import MoreCaloriesCard from "../UI/descriptionCard/MoreCaloriesCard";
@@ -56,6 +57,7 @@ const WhatShouldYouDo = () => {
             required
           />
           <label>kcal</label>
+          <hr className="cross_line_gray_normal" />
           <div className={styles.form_section_form_buttons}>
             <button className="Just_Click_Button_Default"> 등록 </button>
           </div>
@@ -71,12 +73,21 @@ const WhatShouldYouDo = () => {
           </div>
           <p className={fadeStyle}>{MoreCaloiresState} kcal</p>
         </div>
-        <hr className="cross_line_green_rotate" />
-        <hr className="cross_line_green_rotate" />
+        <div className={styles.cross_line_div}>
+          <hr className="cross_line_green_rotate" />
+          <hr className="cross_line_green_rotate" />
+        </div>
         <div className={styles.information_section_exercise}>
-          <p className={styles.information_section_exercise_title}>
-            추가적으로 해야하는 운동
-          </p>
+          <AnimationOnScroll
+            animateIn="animate__fadeInUp"
+            animateOut="animate__fadeOutUp"
+            duration={2}
+          >
+            <p className={styles.information_section_exercise_title}>
+              이렇게 한번 해보세요!
+            </p>
+          </AnimationOnScroll>
+
           <div className={styles.information_section_exercise_detail}>
             <div>
               <MoreCaloriesCard

@@ -722,3 +722,107 @@
             ]
 
     2) 음식 리스트
+
+        DB "foods"
+            // category : 다이어트, 벌크업, 린매스업
+            // majorNutri : 단백질, 지방, 탄수화물
+            // id : f1, f2 ...
+            // nutri : 지방 15g ...
+            // price : 1000 ...
+            // id / img / category / title / majorNutri / nutri / price
+
+[17-1. 파이어베이스에 마이그레이션 하는게, 너무 힘들어서, 페이지만든다.]
+
+        // 아이디 :  e1, e2 ...
+        // 파트 : chest, back, shoulders, biceps, triceps, abs, legs, glutes
+        // des : [{id:1, text:"..."}, {id:2, text:"..."}]
+        // warn : [{id:1, text:"..."}, {id:2, text:"..."}]
+
+        import { FormEvent, useState, useRef } from "react";
+        import styles from "./add-exercise.module.css";
+        import { postExercise } from "../../helper/add-exercise-fetch";
+
+        const AddExercise = () => {
+            const desTextRef = useRef<HTMLInputElement>(null);
+            const warnTextRef = useRef<HTMLInputElement>(null);
+
+            const [id, setId] = useState<string>("");
+                        ...
+            const [warn, setWarn] = useState<{ text: string }[]>([]);
+
+            const AddDes = (event: FormEvent) => {              // description Array 추가
+                event.preventDefault();
+                const desText = desTextRef.current!.value;
+
+                setDes([...des, { text: desText }]);
+
+                desTextRef.current!.value = "";
+            };
+
+            const AddWarn = (event: FormEvent) => {             // warning Array 추가
+                event.preventDefault();
+                const warnText = warnTextRef.current!.value;
+
+                setWarn([...warn, { text: warnText }]);
+
+                warnTextRef.current!.value = "";
+            };
+
+            const submitHandler = async (event: FormEvent) => {     // fetch 시작
+                event.preventDefault();
+
+                const exerciseData = { id, part, name, img, des, warn };    // fetch 할 데이터
+                await postExercise(exerciseData);                // "fetch 아웃소싱"
+                setId(() => "");                                // 초기화
+                        ...
+                setDes(() => []);
+                setWarn(() => []);
+            };
+
+            return (
+                <div className={styles.main_div}>
+                    <form onSubmit={submitHandler}>
+                        <div>
+                            <label htmlFor="id"> 아이디 </label>
+                            <input
+                                placeholder="e1,e2..."
+                                    ...
+                            <label htmlFor="name"> 운동이름 </label>
+                            <input
+                                placeholder="벤치 프레스, 킥 백, 숄더 프레스..."
+                                type={"text"}
+                                id="name"
+                                value={name}
+                                onChange={(e) => setName(e.target.value)}
+                            />
+                        </div>
+                                ...
+                        <div>
+                            <label htmlFor="des"> 설명 </label>
+                                    ...
+                            <label htmlFor="warn"> 유의사항 </label>
+                                <input
+                                    placeholder="1.xxx, 2.xxx ..."
+                                    type={"text"}
+                                    id="warn"
+                                    ref={warnTextRef}
+                                    style={{ width: "25rem" }}
+                                />
+                                {warn.map((item) => (
+                                    <p key={item.text}>{item.text}</p>
+                                ))}
+                                <button onClick={AddWarn}> 추가 </button>
+                        </div>
+                        <div>
+                            <button> 제출</button>
+                        </div>
+                    </form>
+                </div>
+            );
+        };
+
+        export default AddExercise;
+
+
+18. 데이터 마이그레이션 끝
+

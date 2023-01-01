@@ -3,6 +3,7 @@ import MainPage from "./pages/1.mainpage";
 import HowToWorkOut from "./pages/2.how-to-workout";
 import HowToWeightLoss from "./pages/3.how-to-weight-loss";
 import FindFoods from "./pages/4.find-foods";
+import Adding from "./components/0.adding/adding";
 
 function App() {
   return (
@@ -19,6 +20,9 @@ function App() {
         </Route>
         <Route path={"/find-foods"}>
           <FindFoods />
+        </Route>
+        <Route path={"/adding"}>
+          <Adding />
         </Route>
       </Switch>
     </div>

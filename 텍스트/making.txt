@@ -707,16 +707,16 @@
             // part : chest, back, shoulders, biceps, triceps, abs, legs, glutes
             //  part, name, img, des:[id, text], warn:[id,text]
             [ {part:chest, name:체스트프레스, img:"...", 
-                des  : [{id:1, text:"..."}, {id:2, text:"..."}], 
-                warn : [{id:1, text:"..."}, {id:2, text:"..."}],
+                des  : [{text:"..."}, { text:"..."}], 
+                warn : [{text:"..."}, { text:"..."}],
               },
               {part:back, name:풀업, img:"...", 
-                des  : [{id:1, text:"..."}, {id:2, text:"..."}], 
-                warn : [{id:1, text:"..."}, {id:2, text:"..."}],
+                des  : [{text:"..."}, {text:"..."}], 
+                warn : [{text:"..."}, { text:"..."}],
               },
               {part:triceps, name:킥백, img:"...", 
-                des  : [{id:1, text:"..."}, {id:2, text:"..."}], 
-                warn : [{id:1, text:"..."}, {id:2, text:"..."}],
+                des  : [{text:"..."}, { text:"..."}], 
+                warn : [{ text:"..."}, {text:"..."}],
               },
             
             ]
@@ -725,6 +725,7 @@
 
         DB "foods"
             // category : 다이어트, 벌크업, 린매스업
+            // name : xxxxxx, 닭가슴살
             // majorNutri : 단백질, 지방, 탄수화물
             // id : f1, f2 ...
             // nutri : 지방 15g ...
@@ -733,10 +734,12 @@
 
 [17-1. 파이어베이스에 마이그레이션 하는게, 너무 힘들어서, 페이지만든다.]
 
-        // 아이디 :  e1, e2 ...
-        // 파트 : chest, back, shoulders, biceps, triceps, abs, legs, glutes
-        // des : [{id:1, text:"..."}, {id:2, text:"..."}]
-        // warn : [{id:1, text:"..."}, {id:2, text:"..."}]
+    < component >
+
+    // 아이디 :  e1, e2 ...
+    // 파트 : chest, back, shoulders, biceps, triceps, abs, legs, glutes
+    // des : [{id:1, text:"..."}, {id:2, text:"..."}]
+    // warn : [{id:1, text:"..."}, {id:2, text:"..."}]
 
         import { FormEvent, useState, useRef } from "react";
         import styles from "./add-exercise.module.css";
@@ -823,6 +826,241 @@
 
         export default AddExercise;
 
+    <helper - fetch>
 
-18. 데이터 마이그레이션 끝
+        export type PostType = {
+            id: string;
+            part: string;
+            name: string;
+            img: string;
+            des: {text: string }[];
+            warn: {text: string }[];
+        };
+        
+        export const postExercise = async (exerciseData: PostType) => {
+            await fetch("https://do-health-project-default-rtdb.firebaseio.com/exercise.json", {
+                method: "POST",
+                body: JSON.stringify(exerciseData),
+                headers: {
+                    "Content-Type": "application/json",
+                },
+            });
+        };
+        
 
+18. fetch 하여, DB 에서 데이터 가져오기 [Thunk 액션생성자 사용, State 에 집어넣기,  FireBase 에서 data 가져오기 with 타입스크립트, FireBase Data 재가공]
+
+    ** KeyPoint
+        [1. 리덕스 툴킷에서, 비동기 함수를 사용하기 위한, Thunk Action 생성자의 생성 ( Slice 의 Reducer action 은 반드시 순수함수 이므로) ]
+        [2. Thunk Action 생성자를 생성할때, "타입지정" 과 useDispatch 의 생성 방법] ***
+        [3. Thunk Action 생성자를 사용할때, 미리 정의한 AppDispatch 를 사용하는 것]
+
+
+    0. 파이어베이스에서 온 Data 재가공 (Array 형태가 아닌, object 로 감싼형태로 오므로)
+
+        <helper / fetch-get-exercise.tsx >
+
+            : 사용 할 것은 아니지만, 전반적인 기능만 보았다.
+
+                export const getExercise = async () => {
+                    const response = await fetch(
+                    "https://do-health-project-default-rtdb.firebaseio.com/exercise.json"
+                    );
+                
+                    const responseData = await response.json();
+                
+                    const refineData = [];                  // 데이터 재가공
+                
+                    for (const key in responseData) {       // 데이터 재가공
+                        refineData.push({
+                            id: responseData[key].id,
+                            img: responseData[key].img,
+                            name: responseData[key].name,
+                            part: responseData[key].part,
+                            des: responseData[key].des,
+                            warn: responseData[key].warn,
+                        });
+                    }
+                
+                    console.log(refineData);
+                
+                    return responseData;
+                };
+            
+                
+       < 가공 후 데이터 형태 >
+            id: "e1"
+            img: "/2.parts/do-parts/chest/pexels-andrea-piacquadio-3837781.jpg"
+            name: "벤치 프레스"
+            part: "chest"
+            des : (5) [{…}, {…}, {…}, {…}, {…}]
+                    0 : {text: ...}, 1: {text:...}
+            warn: (3) [{…}, {…}, {…}]
+                    0 : {text: ...}, 1: {text:...}
+
+
+    1. 가공 데이터를 토대로 exercise Data 를 담을 Slide 생성
+
+        <store / exercise-slice.tsx >
+
+            [가공 후데이터 형태]
+            //      id: "e1"
+            //      img: "/2.parts/do-parts/chest/pexels-andrea-piacquadio-3837781.jpg"
+            //      name: "벤치 프레스"
+            //      part: "chest"
+            //      des : (5) [{…}, {…}, {…}, {…}, {…}]
+            //              0 : {text: ...}, 1: {text:...}
+            //      warn: (3) [{…}, {…}, {…}]
+            //              0 : {text: ...}, 1: {text:...}
+
+            import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+
+            export interface ExerciseType {
+                id: string;
+                img: string;
+                name: string;
+                part: string;
+                des: { text: string }[];
+                warn: { text: string }[];
+            }
+
+            const initialState: { exerciseData: ExerciseType[] } = {     // exerciseData 안에, Data 들을 전부 넣을 것이다.
+                exerciseData: [],
+            };
+
+            const exerciseSlice = createSlice({
+                name: "exercise",
+                initialState,
+                reducers: {
+                    updateAllExercise(state, action: PayloadAction<ExerciseType[]>) {
+                        state.exerciseData = action.payload;                // payload 에서 오는 값을, exerciseData 로 교체할 것이다.
+                    },
+                },
+            });
+
+            export const exerciseActions = exerciseSlice.actions;
+
+            export default exerciseSlice.reducer;
+
+
+
+    2. [ Thunk Action 생성자 이용한, "비동기함수(fetch)"의 사용 - Store 에 State 담기, ** useAppDispatch의 생성 ] 
+
+-       1. Dispatch 의 타입 지정
+-       2. Thunk action 생성자 사용시에 필요한 Dispath 를 export
+            https://redux.js.org/tutorials/typescript-quick-start#define-typed-hooks
+        
+
+        < store / exercise-action.tsx >
+
+            import { Dispatch } from "@reduxjs/toolkit";
+            import { exerciseActions } from "./exercise-slice";
+            import { useDispatch } from "react-redux";              // useDispath 의 사전 생성
+            import type { AppDispatch } from "../store/index";      //  action 생성자용 Dispatch
+           
+
+            export const sendRequest = () => {
+                return async (dispatch: Dispatch) => {      // 1. 타입은 Dispatch 이다.
+                   
+                    const fetchData = async () => {         // 비동기 함수(fetch) 만들어서
+                    
+                        const response = await fetch(      
+                            "https://do-health-project-default-rtdb.firebaseio.com/exercise.json"
+                        );
+                        const responseData = await response.json();
+
+                        const refineData = [];              // 파이어 베이스에서 데이터 것 refine
+
+                        for (const key in responseData) {
+                            refineData.push({
+                            id: responseData[key].id,
+                            img: responseData[key].img,
+                            name: responseData[key].name,
+                            part: responseData[key].part,
+                            des: responseData[key].des,
+                            warn: responseData[key].warn,
+                            });
+                        }
+
+                        return refineData;
+                    };
+
+                    const allExercise = await fetchData();
+
+                    dispatch(exerciseActions.updateAllExercise(allExercise));   // inputData를 집어넣는 action 을 한다.
+                };
+            };
+
+            export const useAppDispatch: () => AppDispatch = useDispatch;       // 2. Thunk action 생성자 사용시에 필요한 Dispath 를 export
+
+
+    3. Thunk Action 생성자 사용 [ 정의한 useAppDispatch 사용 ]
+
+-       : useDispatch 가 아닌,  "exercise-action.tsx" 에서 정의한 "useAppDispatch" 를 사용
+
+        < App.tsx >
+
+            import { sendRequest, useAppDispatch } from "./store/exercise-action";
+            import { useEffect } from "react";
+            import { useSelector } from "react-redux";
+            import { RootState } from "./store";
+
+            function App() {
+                const exerciseState = useSelector(      // 확인용, State 뽑아보았다.
+                    (state: RootState) => state.exercise.exerciseData
+                );
+            
+                const dispatch = useAppDispatch();      // useDispatch 가 아닌, 정의한 useAppDispatch 사용
+
+                useEffect(() => {
+                    dispatch(sendRequest());            // useDispatch 가 아닌, 정의한 useAppDispatch 사용2
+                }, [dispatch]);
+            
+                console.log(exerciseState);
+            
+                return (
+                    <div className="App">
+                        <Switch>
+                        <Route path="/" exact>
+                            <MainPage />
+                            ...
+
+
+
+        ** console.log(exerciseState)       // 확인 완료
+            (20)[{…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}]
+           
+
+    4. fetch 한 데이터로 교체
+
+        <components / 2.how-to-workout / 1.chest-part-description.tsx >
+            import DesCard from "../UI/descriptionCard/DesCard";
+            import styles from "./0.all-parts-description.module.css";
+            import { useSelector } from "react-redux";
+            import { RootState } from "../../store";
+
+            const ChestPartDes = () => {
+                const exerciseData = useSelector(
+                    (state: RootState) => state.exercise.exerciseData           // 데이터 뽑아서 사용
+                );
+                const filterdData = exerciseData.filter((item) => item.part === "chest");       // 필터
+
+                return (
+                    <div className={styles.main_div}>
+                        {filterdData.map((item) => (
+                            <DesCard
+                                key={item.id}
+                                name={item.name}
+                                img={item.img}
+                                des={item.des}
+                                warn={item.warn}
+                            ></DesCard>
+                        ))}
+                    </div>
+                );
+            };
+
+            export default ChestPartDes;
+
+
+19. food 도 똑같이 "마이그레이션 후 fetch 하여 DB 가져오기"

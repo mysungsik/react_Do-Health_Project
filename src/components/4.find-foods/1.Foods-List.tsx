@@ -1,60 +1,16 @@
 import FoodPreview from "../UI/foodsCard/food-previewcard";
 import styles from "./1.Foods-List.module.css";
-import { useState, useEffect } from "react";
+import { useState } from "react";
+import { useSelector } from "react-redux";
+import { RootState } from "../../store";
 
 //category, title, majorNutri, nutri, price
 
-interface FoodType {
-  id: number;
-  img: string;
-  category: string;
-  title: string;
-  majorNutri: string;
-  nutri: string;
-  price: number;
-}
-
 const FoodsList = () => {
-  // 추후 FireBase DB 에서 fetch 해서 가져오도록 하자. 일단 샘플 데이터 두개
-
+  const foodsData = useSelector((state: RootState) => state.foods.foodsData);
   const [selected, setSelected] = useState<string>("탄수화물");
-  const [foodsData, setFoodsData] = useState<FoodType[]>([
-    {
-      id: 1,
-      category: "다이어트",
-      img: "/4.foods/claudio-schwarz-4qJlXK4mYzU-unsplash.jpg",
-      title: "최고의 단백질 보충제 닭가슴살",
-      majorNutri: "단백질",
-      nutri: "Protein 22g",
-      price: 1000,
-    },
-    {
-      id: 2,
-      category: "벌크업",
-      img: "/4.foods/claudio-schwarz-4qJlXK4mYzU-unsplash.jpg",
-      title: "최고의 지방 보충제 아보카도",
-      majorNutri: "지방",
-      nutri: "Fat 15g",
-      price: 2000,
-    },
-    {
-      id: 3,
-      category: "린매스업",
-      img: "/4.foods/claudio-schwarz-4qJlXK4mYzU-unsplash.jpg",
-      title: "맛좋은 단백질 보충제 소고기볼",
-      majorNutri: "단백질",
-      nutri: "Protein 15g",
-      price: 2000,
-    },
-  ]);
 
-  // filter 될 FoodData
-  const [selectedFoods, setSelectedFoods] = useState<FoodType[]>([]);
-
-  // filter 되는 로직
-  useEffect(() => {
-    setSelectedFoods(foodsData.filter((food) => food.majorNutri === selected));
-  }, [selected]);
+  const filteredData = foodsData.filter((food) => food.majorNutri === selected);
 
   let selected_style = styles.selected_hydro; // 초기 백그라운드 조건
   let text_highlight_hydro = ""; // 초기 텍스트 조건
@@ -89,18 +45,18 @@ const FoodsList = () => {
         </li>
       </ul>
       <div className={styles.main_div_title}>
-        <img src="/3.loss-weight/icons8-fire-alt-100.png" />
+        <img src="/3.loss-weight/icons8-fire-alt-100.png" alt="icon" />
         <p> 이 음식은 어떠신가요?</p>
       </div>
 
       <div className={styles.main_grid}>
-        {selectedFoods.map((food) => (
+        {filteredData.map((food) => (
           <FoodPreview
             key={food.id}
             id={food.id}
             img={food.img}
             category={food.category}
-            title={food.title}
+            name={food.name}
             majorNutri={food.majorNutri}
             nutri={food.nutri}
             price={food.price}

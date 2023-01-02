@@ -4,8 +4,8 @@ import { AnimationOnScroll } from "react-animation-on-scroll";
 export type Exr = {
   name: string;
   img: string;
-  des: { id: number; text: string }[];
-  warn: { id: number; text: string }[];
+  des: { text: string }[];
+  warn: { text: string }[];
 };
 
 const DesCard: React.FC<Exr> = (props) => {
@@ -21,7 +21,7 @@ const DesCard: React.FC<Exr> = (props) => {
       <div className={styles.main_desc_div}>
         <ul className={styles.main_desc_text_ul}>
           {des.map((item) => (
-            <li key={item.id}> {item.text}</li>
+            <li key={item.text}> {item.text}</li>
           ))}
         </ul>
         <div className={styles.main_desc_img_div}>
@@ -35,12 +35,14 @@ const DesCard: React.FC<Exr> = (props) => {
         <p> 유의사항</p>
         <ul className={styles.main_warning_lists}>
           {warn.map((item) => (
-            <AnimationOnScroll animateIn="animate__bounceIn" key={item.id}>
-              <li key={item.id}> {item.text}</li>
+            <AnimationOnScroll animateIn="animate__bounceIn" key={item.text}>
+              <li key={item.text}> {item.text}</li>
             </AnimationOnScroll>
           ))}
         </ul>
       </div>
+      <hr className="cross_orange_line" />
+      <hr className="cross_orange_line" />
     </div>
   );
 };

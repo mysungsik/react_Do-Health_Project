@@ -201,3 +201,10 @@ code {
   padding: 0;
   margin: 0 auto;
 }
+
+
+/* 크로스 라인  Orange-normal */
+.cross_orange_line {
+  height: 2rem;
+  background-color: var(--do-parts-decription-main-background-color);
+}

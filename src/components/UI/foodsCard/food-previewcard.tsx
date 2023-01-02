@@ -1,25 +1,25 @@
 import styles from "./food-previewcard.module.css";
 
 const FoodPreview: React.FC<{
-  id: number;
+  id: string;
   img: string;
   category: string;
-  title: string;
+  name: string;
   majorNutri: string;
   nutri: string;
   price: number;
 }> = (props) => {
-  const { id, img, category, title, majorNutri, nutri, price } = props;
+  const { img, category, name, majorNutri, nutri, price } = props;
 
   return (
     <div className={styles.main_div}>
       <section className={styles.img_section}>
-        <img src={img} />
+        <img src={img} alt="img" />
         <div className={styles.img_section_category}> {category}</div>
       </section>
       <section className={styles.info_section}>
         <div className={styles.info_section_title}>
-          <p> {title}</p>
+          <p> {name}</p>
         </div>
         <div className={styles.info_section_info_detail}>
           <div className={styles.info_section_info_detail_category}>

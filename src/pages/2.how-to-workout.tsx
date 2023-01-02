@@ -21,7 +21,9 @@ const HowToWorkOut = () => {
       {chooseDescription.descriptionState.onDefaultPart && <DefaultDes />}
       {chooseDescription.descriptionState.onChestPart && <ChestPartDes />}
       {chooseDescription.descriptionState.onBackPart && <BackPartDes />}
-      {chooseDescription.descriptionState.onShoulderPart && (<ShouldersPartDes />)}
+      {chooseDescription.descriptionState.onShoulderPart && (
+        <ShouldersPartDes />
+      )}
       {chooseDescription.descriptionState.onBicepsPart && <BicepsPartDes />}
       {chooseDescription.descriptionState.onTricepsPart && <TricepsPartDes />}
       {chooseDescription.descriptionState.onAbsPart && <AbsPartDes />}

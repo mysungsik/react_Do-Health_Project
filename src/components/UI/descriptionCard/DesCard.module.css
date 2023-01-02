@@ -40,13 +40,14 @@
 /* 설명칸 이미지칸 안의 이미지 */
 .main_desc_img_div img {
   width: 95%;
-  height: 45rem;
+  height: 30rem;
   object-fit: cover;
+  border-radius: 20px;
 }
 
 /* 유의사항 DIV */
 .main_warning_div {
-  padding-bottom: 8em;
+  padding-bottom: 4em;
 }
 
 /* 유의사항 Title */

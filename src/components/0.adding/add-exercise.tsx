@@ -5,7 +5,7 @@
 
 import { FormEvent, useState, useRef } from "react";
 import styles from "./add-exercise.module.css";
-import { postExercise } from "../../helper/add-exercise-fetch";
+import { postExercise } from "../../helper/fetch-add-exercise";
 
 const AddExercise = () => {
   const desTextRef = useRef<HTMLInputElement>(null);

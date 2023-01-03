@@ -92,61 +92,61 @@ const WhatShouldYouDo = () => {
             <div>
               <MoreCaloriesCard
                 name={"런닝"}
-                img={"/3.loss-weight/tyler-nix-Y1drF0Y3Oe0-unsplash.jpg"}
+                img={"/3.loss-weight/pexels-andrea-piacquadio-3756042.jpg"}
                 des={[
-                  { id: 0, text: "소모되는 칼로리 : 500kcal/hr" },
+                  { id: 0, text: "소모되는 칼로리 : 576 kcal / 시간" },
                   { id: 1, text: "최고의 유산소 운동" },
                   {
                     id: 2,
                     text: "아무런 장비가 필요 없다",
                   },
                 ]}
-                time={MoreCaloiresState / 500}
+                time={MoreCaloiresState / 576}
               />
             </div>
             <div>
               <MoreCaloriesCardLeft
                 name={"수영"}
-                img={"/3.loss-weight/tyler-nix-Y1drF0Y3Oe0-unsplash.jpg"}
+                img={"/3.loss-weight/pexels-guduru-ajay-bhargav-863988.jpg"}
                 des={[
-                  { id: 0, text: "소모되는 칼로리 : 500kcal/hr" },
+                  { id: 0, text: "소모되는 칼로리 : 892 kcal / 시간" },
                   { id: 1, text: "최고의 유산소 운동" },
                   {
                     id: 2,
                     text: "아무런 장비가 필요 없다",
                   },
                 ]}
-                time={MoreCaloiresState / 400}
+                time={MoreCaloiresState / 892}
               />
             </div>
             <div></div>
             <MoreCaloriesCard
               name={"사이클"}
-              img={"/3.loss-weight/tyler-nix-Y1drF0Y3Oe0-unsplash.jpg"}
+              img={"/3.loss-weight/beau-runsten-mR-N67XjTHg-unsplash.jpg"}
               des={[
-                { id: 0, text: "소모되는 칼로리 : 500kcal/hr" },
+                { id: 0, text: "소모되는 칼로리 : 588 kcal / 시간" },
                 { id: 1, text: "최고의 유산소 운동" },
                 {
                   id: 2,
                   text: "아무런 장비가 필요 없다",
                 },
               ]}
-              time={MoreCaloiresState / 300}
+              time={MoreCaloiresState / 588}
             />
 
             <div>
               <MoreCaloriesCardLeft
                 name={"고강도 웨이트"}
-                img={"/3.loss-weight/tyler-nix-Y1drF0Y3Oe0-unsplash.jpg"}
+                img={"/3.loss-weight/pexels-victor-freitas-841130.jpg"}
                 des={[
-                  { id: 0, text: "소모되는 칼로리 : 500kcal/hr" },
+                  { id: 0, text: "소모되는 칼로리 : 440 kcal / 시간" },
                   { id: 1, text: "최고의 유산소 운동" },
                   {
                     id: 2,
                     text: "아무런 장비가 필요 없다",
                   },
                 ]}
-                time={MoreCaloiresState / 200}
+                time={MoreCaloiresState / 440}
               />
             </div>
           </div>

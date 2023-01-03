@@ -1,16 +1,18 @@
 /* 가장 바깥 메인 헤더 */
 .main_header {
+  background-color: white;
   position: fixed;
   top: 0;
-  left: 0;
-  width: 100%;
-  height: 5rem;
+  right: 0;
+  width: 50%;
+  padding-top: 2rem;
   margin-bottom: 10rem;
-  display: flex;
-  justify-content: space-between;
-  text-align: center;
-  background-color: var(--main-content-color-trans8);
-  z-index: 5;
+  z-index: 10;
+}
+
+.main_header hr {
+  margin: 2rem;
+  width: 80%;
 }
 
 /* 로고Div (Link) */
@@ -21,6 +23,9 @@
   text-decoration: none;
   color: inherit;
   transition: all 200ms ease-out;
+  border: 1px solid;
+  width: 13rem;
+  margin-bottom: 5rem;
 }
 
 .header_logo:hover {
@@ -31,7 +36,6 @@
 .header_menu {
   margin-right: 2rem;
   list-style: none;
-  display: flex;
   color: var(--main-text-color);
   font-weight: 600;
   font-size: 1rem;
@@ -41,8 +45,9 @@
 .header_menu li {
   display: flex;
   align-items: center;
-  margin: 0 2rem;
-
+  justify-content: center;
+  width: 5rem;
+  border: 1px solid;
   transition: all 100ms ease-out;
 }
 
@@ -68,4 +73,7 @@
   display: flex;
   align-items: center;
   font-size: 1.1rem;
+  width: 5rem;
+  height: 3rem;
+  margin: 1.5rem 0 1rem 15%;
 }

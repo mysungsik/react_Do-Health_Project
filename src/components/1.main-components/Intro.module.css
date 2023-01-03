@@ -5,7 +5,7 @@
   top: 0;
   left: 0;
   width: 100%;
-  height: 60rem;
+  height: 50rem;
   object-fit: cover;
 }
 
@@ -18,19 +18,19 @@
 
 /* 건강을 지키는 단 하나의 법칙 */
 .main_Intro_textP {
-  font-size: 3rem;
+  font-size: 2rem;
   font-weight: lighter;
 }
 
 /* 당장 */
 .main_Intro_textH span {
-  font-size: 3rem;
+  font-size: 2.5rem;
   font-weight: lighter;
 }
 
 /* Do-Health */
 .main_Intro_textH {
-  font-size: 5rem;
+  font-size: 3.5rem;
   font-weight: 700;
   margin-left: 8rem;
 }
@@ -40,8 +40,8 @@
   display: flex;
   flex-direction: column;
 
-  margin-left: 5rem;
-  margin-top: 8rem;
+  margin-left: 6rem;
+  margin-top: 5rem;
 }
 
 /* 각각 버튼들 */
@@ -49,4 +49,39 @@
   margin: 1rem;
 }
 
-/* 버튼 안의 Link 태그 */
+@media (max-width: 1200px) {
+  /* 비디오 */
+  .video_div {
+    height: 60rem;
+  }
+  /* 메인 화면  모든 텍스트들 */
+  .main_Intro {
+    text-align: center;
+    color: var(--main-content-color);
+    margin-top: 10rem;
+  }
+  /* 건강을 지키는 단 하나의 법칙 */
+  .main_Intro_textP {
+    font-size: 2rem;
+    width: 80%;
+    text-align: center;
+  }
+  /* 당장 */
+  .main_Intro_textH span {
+    display: block;
+    margin: 0;
+  }
+  /* Do-Health */
+  .main_Intro_textH {
+    width: 80%;
+    font-size: 3.5rem;
+    font-weight: 700;
+    margin: 0;
+  }
+  /* 버튼 섹션 */
+  .main_Intro_buttons {
+    align-items: center;
+    width: 80%;
+    margin: 1.5rem auto 0 auto;
+  }
+}

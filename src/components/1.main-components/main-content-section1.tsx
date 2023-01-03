@@ -32,7 +32,7 @@ const MainContentSection1 = () => {
         <div className={styles.how_to_workout_text_div}>
           <div className={styles.how_to_workout_text_div_title}>
             <AnimationOnScroll animateIn="animate__fadeInLeft" duration={2}>
-              <h1>메인 타이틀</h1>
+              <h1>헬스 +</h1>
             </AnimationOnScroll>
           </div>
           <div className={styles.how_to_workout_text_div_desc}>
@@ -40,16 +40,16 @@ const MainContentSection1 = () => {
               animateIn="animate__fadeInLeftBig"
               duration={1.5}
             >
-              <p>설명설명설명</p>
-              <p>설명설명설명</p>
-              <p>설명설명설명</p>
-              <p>설명설명설명</p>
+              <p>운동 부위를 선택하세요</p>
+              <p>적절한 운동을 선택하세요</p>
+              <p>주의사항에 유의하세요</p>
+              <p>직접 따라해보세요!</p>
             </AnimationOnScroll>
           </div>
         </div>
         <div className={styles.how_to_workout_image_div}>
-          <AnimationOnScroll animateIn="animate__fadeIn" duration={3}>
-            <img src="/mainpage/section1-desc-img.jpg" alt={"description"} />
+          <AnimationOnScroll animateIn="animate__fadeInRight" duration={1.5}>
+            <img src="/mainpage/do-parts.jpg" alt={"description"} />
           </AnimationOnScroll>
         </div>
       </section>

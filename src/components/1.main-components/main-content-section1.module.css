@@ -1,16 +1,16 @@
 /* 메인페이지 메인섹션1 전체 */
 .main_div {
-  margin-top: 20rem;
+  margin-top: 15rem;
   text-align: center;
 }
 
 /* 운동 방법을 모르시겠다면 */
 .how_to_workout_textP {
-  font-size: 2rem;
+  font-size: 1.5rem;
 }
 /* Do-Health 가 도와드리겠습니다 */
 .how_to_workout_textH {
-  font-size: 3rem;
+  font-size: 2.5rem;
 }
 
 .how_to_workout_textH span {
@@ -19,7 +19,7 @@
 }
 /* 설명란 */
 .how_to_workout_desc {
-  font-size: 1.5rem;
+  font-size: 1.3rem;
 }
 .how_to_workout_desc span {
   font-weight: 600;
@@ -29,18 +29,17 @@
 .how_to_workout_image_section {
   margin: 2rem auto;
   width: 70%;
-  max-width: 60rem;
+  max-width: 70rem;
   height: 50rem;
   border-radius: 40px;
-  background-color: var(--section-desc-img-background-color-trans8);
+  background-color: rgb(255, 140, 91);
   display: flex;
   justify-content: space-between;
 }
 
 /* 이미지 설명 텍스트 */
 .how_to_workout_text_div {
-  color: var(--main-content-color);
-  margin-left: 2rem;
+  margin-left: 5rem;
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
@@ -50,15 +49,13 @@
 .how_to_workout_text_div_title h1 {
   font-size: 3rem;
   font-weight: 600;
-  margin-left: 6rem;
-}
-/* 이미지 설명 텍스트 타이틀  애니메이션*/
-.how_to_workout_text_div_title_animation {
-  animation: toleft 1000ms ease-out;
+  margin-left: 2rem;
+  margin-top: -2rem;
 }
 
 /* 이미지 설명 텍스트 작은글씨들 */
 .how_to_workout_text_div_desc p {
+  margin-left: 2rem;
   font-weight: 300;
 }
 
@@ -69,7 +66,67 @@
 
 .how_to_workout_image_div img {
   margin-right: 1.5rem;
-  width: 30rem;
+  width: 35rem;
   height: 40rem;
   border-radius: 40px;
+  object-fit: cover;
+  box-shadow: 2px 2px 3px rgb(206, 79, 0);
+}
+
+@media (max-width: 1200px) {
+  /* 운동 방법을 모르시겠다면 */
+  .how_to_workout_textP {
+    font-size: 1.2rem;
+  }
+  /* Do-Health 가 도와드리겠습니다 */
+  .how_to_workout_textH {
+    font-size: 2rem;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .how_to_workout_textH span {
+    font-size: 1.5rem;
+    font-weight: 400;
+  }
+  /* 설명란 */
+  .how_to_workout_desc {
+    font-size: 1rem;
+  }
+
+  /* 아래 예시 이미지 전체 */
+  .how_to_workout_image_section {
+    flex-direction: column;
+    justify-content: center;
+    width: 95%;
+    height: 48rem;
+  }
+
+  /* 이미지 설명 텍스트 */
+  .how_to_workout_text_div {
+    margin-left: 0;
+  }
+
+  /* 이미지 설명 텍스트 타이틀 */
+  .how_to_workout_text_div_title h1 {
+    margin-left: 0;
+    margin-bottom: 1rem;
+  }
+
+  /* 이미지 설명 텍스트 작은글씨들 */
+  .how_to_workout_text_div_desc p {
+    margin-left: 0;
+  }
+
+  /* 이미지 감싸는 DIB */
+  .how_to_workout_image_div {
+    margin: 1rem 0;
+  }
+
+  /* 이미지 */
+  .how_to_workout_image_div img {
+    width: 95%;
+    height: 25rem;
+    margin-right: 0;
+  }
 }

@@ -1,7 +1,9 @@
 import styles from "./Intro.module.css";
 import { Link } from "react-router-dom";
+import { useCookies } from "react-cookie";
 
 const Intro = () => {
+  const [cookies] = useCookies(["auth-cookie"]);
   return (
     <div>
       <section>
@@ -21,13 +23,17 @@ const Intro = () => {
         <button className="White_Button">
           <Link to={"/work-out"}>헬스 방법 알아보기 + </Link>
         </button>
-
         <button className="Blue_Button">
           <Link to={"/weight-loss"}>체중 줄여보기 -</Link>
         </button>
         <button className="White_Button">
           <Link to={"/find-foods"}>식단 알아보기 -</Link>
         </button>
+        {cookies["auth-cookie"] && (
+          <button className="Blue_Button">
+            <Link to={"/calendar"}>식단 달력 적기 +</Link>
+          </button>
+        )}
       </section>
     </div>
   );

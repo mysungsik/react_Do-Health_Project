@@ -1,0 +1,39 @@
+/* 가장 바깥 메인 헤더 */
+.main_header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 5rem;
+  margin-bottom: 10rem;
+  display: flex;
+  justify-content: space-between;
+  text-align: center;
+  background-color: var(--main-content-color-trans8);
+  z-index: 5;
+}
+
+/* 로고Div (Link) */
+.header_logo {
+  display: flex;
+  align-items: center;
+  margin-left: 2rem;
+  text-decoration: none;
+  color: inherit;
+  transition: all 200ms ease-out;
+}
+
+.header_logo:hover {
+  transform: scale(1.03);
+}
+
+.hamburger_button img {
+  cursor: pointer;
+  background-color: rgba(0, 130, 244, 0);
+  border: none;
+  transition: all 200ms ease-out;
+}
+
+.hamburger_button img:hover {
+  transform: scale(1.05);
+}

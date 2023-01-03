@@ -1,0 +1,16 @@
+1. 텍스트에, 그라데이션만들기
+
+    .header_menu li:hover {
+        cursor: pointer;
+        opacity: 0.9;
+        transform: scale(1.05);
+        color: rgba(255, 255, 255, 0);
+        background: linear-gradient(
+        to left,
+            rgb(0, 204, 255),
+            rgb(0, 26, 255),
+            rgb(212, 9, 227)
+        );
+        -webkit-background-clip: text;
+        background-clip: text;
+    }

@@ -36,21 +36,21 @@ const MainContentSection1 = () => {
         <div className={styles.how_to_workout_text_div}>
           <div className={styles.how_to_workout_text_div_title}>
             <AnimationOnScroll animateIn="animate__fadeInLeft" duration={2}>
-              <h1>메인 타이틀</h1>
+              <h1>체중 -</h1>
             </AnimationOnScroll>
           </div>
           <div className={styles.how_to_workout_text_div_desc}>
             <AnimationOnScroll animateIn="animate__fadeIn" duration={2}>
-              <p>설명설명설명</p>
-              <p>설명설명설명</p>
-              <p>설명설명설명</p>
-              <p>설명설명설명</p>
+              <p>AMR 을 계산해드립니다</p>
+              <p>칼로리를 입력해주세요</p>
+              <p>더 필요한 열량소모를 알려드립니다</p>
+              <p>추가적인 운동방법을 알려드립니다</p>
             </AnimationOnScroll>
           </div>
         </div>
         <div className={styles.how_to_workout_image_div}>
-          <AnimationOnScroll animateIn="animate__fadeIn" duration={3}>
-            <img src="/mainpage/section1-desc-img.jpg" alt={"description"} />
+          <AnimationOnScroll animateIn="animate__fadeInUp" duration={1}>
+            <img src="/mainpage/do-loss.JPG" alt={"description"} />
           </AnimationOnScroll>
         </div>
       </section>

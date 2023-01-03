@@ -1,9 +1,9 @@
-import styles from "./layout-header.module.css";
+import styles from "./layout-header-for-mobile-modal.module.css";
 import { Link } from "react-router-dom";
 import { useCookies } from "react-cookie";
 import { useHistory } from "react-router-dom";
 
-const LayoutHeader = () => {
+const LayoutHeaderModalForM = () => {
   const [cookies, setCookie, removeCookie] = useCookies(["auth-cookie"]);
   const history = useHistory();
 
@@ -18,6 +18,7 @@ const LayoutHeader = () => {
         <img src="/main-logo.png" alt="logo" />
         <h3> DO.HEALTH</h3>
       </Link>
+      <hr className="cross_line_gray_normal" />
       <ul className={styles.header_menu}>
         <Link to="/work-out">
           <li> 헬스 +</li>
@@ -43,10 +44,11 @@ const LayoutHeader = () => {
             <li> 캘린더 + </li>
           </Link>
         )}
+        <hr className="cross_line_gray_normal" />
         {cookies["auth-cookie"] && <li onClick={logoutHandler}> 로그아웃</li>}
       </ul>
     </div>
   );
 };
 
-export default LayoutHeader;
+export default LayoutHeaderModalForM;

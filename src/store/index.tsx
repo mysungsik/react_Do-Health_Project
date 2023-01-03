@@ -3,6 +3,7 @@ import choosePartSlice from "./choose-part-slice";
 import calculationSlice from "./calculation";
 import exerciseSlice from "./exercise-slice";
 import foodsSlice from "./foods-slice";
+import calendarSlice from "./calendar-slice";
 
 export const store = configureStore({
   reducer: {
@@ -10,6 +11,7 @@ export const store = configureStore({
     calulate: calculationSlice,
     exercise: exerciseSlice,
     foods: foodsSlice,
+    calendar: calendarSlice,
   },
 });
 

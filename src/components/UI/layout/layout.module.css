@@ -1,0 +1,15 @@
+.mobile {
+  display: none;
+}
+.desk {
+  display: block;
+}
+
+@media (max-width: 1200px) {
+  .mobile {
+    display: block;
+  }
+  .desk {
+    display: none;
+  }
+}

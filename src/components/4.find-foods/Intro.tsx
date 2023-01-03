@@ -17,8 +17,8 @@ const Intro = () => {
         </section>
         <section className={styles.main_title_img_section}>
           <img
-            src="/3.loss-weight/tyler-nix-Y1drF0Y3Oe0-unsplash.jpg"
-            alt="running"
+            src="/4.foods/elena-koycheva-faqm2syfUIE-unsplash.jpg"
+            alt="eat"
           />
         </section>
       </div>

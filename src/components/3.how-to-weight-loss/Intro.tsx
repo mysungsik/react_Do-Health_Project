@@ -13,7 +13,7 @@ const Intro = () => {
       </div>
       <div className={styles.main_title_img}>
         <img
-          src="/3.loss-weight/tyler-nix-Y1drF0Y3Oe0-unsplash.jpg"
+          src="/3.loss-weight/pexels-andrea-piacquadio-3756042.jpg"
           alt="running"
         />
       </div>

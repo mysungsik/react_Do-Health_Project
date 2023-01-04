@@ -85,3 +85,12 @@
   font-weight: 600;
   color: rgb(53, 53, 53);
 }
+
+@media (max-width: 1200px) {
+  .main_div {
+    width: 95%;
+    max-width: 25rem;
+    height: 28rem;
+    margin: 0.5rem;
+  }
+}

@@ -21,6 +21,7 @@ import {
 import { sendRequest as sendRequestForFoods } from "./store/foods-action";
 import { sendRequest as sendRequestForCalendars } from "./store/calendar-action";
 import { useCookies } from "react-cookie";
+import NotFoundPage from "./pages/notfountd";
 
 function App() {
   const [cookies] = useCookies(["auth-cookie"]);
@@ -82,6 +83,9 @@ function App() {
             getOut={getOut}
             isLogedIn={cookies["auth-cookie"]} // 로그인 했는지 확인
           />
+        </Route>
+        <Route path={"*"}>
+          <NotFoundPage />
         </Route>
       </Switch>
     </div>

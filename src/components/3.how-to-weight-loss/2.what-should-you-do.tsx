@@ -95,10 +95,18 @@ const WhatShouldYouDo = () => {
                 img={"/3.loss-weight/pexels-andrea-piacquadio-3756042.jpg"}
                 des={[
                   { id: 0, text: "소모되는 칼로리 : 576 kcal / 시간" },
-                  { id: 1, text: "최고의 유산소 운동" },
+                  { id: 1, text: "장비가 필요없는 최고의 유산소 운동" },
                   {
                     id: 2,
-                    text: "아무런 장비가 필요 없다",
+                    text: "온 몸의 코어 근육이 살아납니다",
+                  },
+                  {
+                    id: 3,
+                    text: "심폐 기능이 향상됩니다",
+                  },
+                  {
+                    id: 4,
+                    text: "세로토닌을 활성화 하여, 스트레스가 감소합니다",
                   },
                 ]}
                 time={MoreCaloiresState / 576}
@@ -110,10 +118,26 @@ const WhatShouldYouDo = () => {
                 img={"/3.loss-weight/pexels-guduru-ajay-bhargav-863988.jpg"}
                 des={[
                   { id: 0, text: "소모되는 칼로리 : 892 kcal / 시간" },
-                  { id: 1, text: "최고의 유산소 운동" },
+                  { id: 1, text: "가장 안전한 유산소 운동" },
                   {
                     id: 2,
-                    text: "아무런 장비가 필요 없다",
+                    text: "필요한건 단 하나 수영복세트!",
+                  },
+                  {
+                    id: 3,
+                    text: "덜 고통스럽게, 온 몸의 칼로리를 소모시킵니다.",
+                  },
+                  {
+                    id: 4,
+                    text: "온 몸의 근육을 활성화 하는 전신운동입니다",
+                  },
+                  {
+                    id: 5,
+                    text: "심폐 기능을 향상시킵니다",
+                  },
+                  {
+                    id: 6,
+                    text: "물이 가져오는 편안함은, 심신을 안정시킵니다",
                   },
                 ]}
                 time={MoreCaloiresState / 892}
@@ -125,10 +149,18 @@ const WhatShouldYouDo = () => {
               img={"/3.loss-weight/beau-runsten-mR-N67XjTHg-unsplash.jpg"}
               des={[
                 { id: 0, text: "소모되는 칼로리 : 588 kcal / 시간" },
-                { id: 1, text: "최고의 유산소 운동" },
+                { id: 1, text: "허벅지를 강하게! 사이클" },
                 {
                   id: 2,
-                  text: "아무런 장비가 필요 없다",
+                  text: "강한 허벅지의 자극을 줍니다",
+                },
+                {
+                  id: 3,
+                  text: "시원한 바람과 경치를 즐길 수 있습니다.",
+                },
+                {
+                  id: 4,
+                  text: "생각보다 관절에 무리를 주지 않습니다",
                 },
               ]}
               time={MoreCaloiresState / 588}
@@ -140,10 +172,22 @@ const WhatShouldYouDo = () => {
                 img={"/3.loss-weight/pexels-victor-freitas-841130.jpg"}
                 des={[
                   { id: 0, text: "소모되는 칼로리 : 440 kcal / 시간" },
-                  { id: 1, text: "최고의 유산소 운동" },
+                  { id: 1, text: "근력운동을 가장한 유산소운동" },
                   {
                     id: 2,
-                    text: "아무런 장비가 필요 없다",
+                    text: "가까운 헬스장에 찾아가세요",
+                  },
+                  {
+                    id: 3,
+                    text: "당신의 근육은 생각보다 산소를 요구합니다.",
+                  },
+                  {
+                    id: 4,
+                    text: "근력과 함께 심폐지구력까지 향상시킵니다",
+                  },
+                  {
+                    id: 5,
+                    text: "안전사고에 유의하세요",
                   },
                 ]}
                 time={MoreCaloiresState / 440}

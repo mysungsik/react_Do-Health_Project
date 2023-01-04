@@ -23,7 +23,7 @@ html {
   --section3-background-color: rgba(255, 252, 241);
   --section3-background-color-trans8: rgba(255, 252, 241, 0.8);
 
-  --footer-background-color: gray;
+  --footer-background-color: rgb(120, 120, 120);
 
   --do-parts-decription-main-background-color: rgb(255, 85, 0);
 
@@ -186,6 +186,16 @@ code {
   margin-left: -2rem;
 }
 
+/* 크로스 라인 Green-thick */
+.cross_line_green_thick {
+  position: relative;
+  background-color: var(--loss-weight-parts-intro-background-color-dark);
+  height: 5rem;
+  margin: 0;
+  border: none;
+  z-index: 2;
+}
+
 /* 크로스 라인  Purple-thick */
 .cross_line_purple_thick {
   position: relative;
@@ -216,44 +226,71 @@ code {
 
 /* 캘린더 */
 
+/* 캘린더 전체 */
 .demo-app {
   margin-top: 4rem;
+  margin-bottom: 4rem;
   text-align: center;
   display: flex;
   min-height: 100%;
   font-family: Arial, Helvetica Neue, Helvetica, sans-serif;
   font-size: 14px;
 }
+
+/* 캘린더 타이틀 */
 .demo-app-title {
   font-size: 2.2rem;
   width: 20rem;
   height: 3rem;
   margin: 0 auto;
+  margin-top: 4rem;
   margin-bottom: 2rem;
   background-color: orange;
   color: white;
   border-radius: 10px;
   box-shadow: 1px 1px 3px gray;
 }
-
-.demo-app-sidebar {
-  width: 300px;
-  line-height: 1.5;
-  background: #eaf9ff;
-  border-right: 1px solid #d3e2e8;
-}
-
-.demo-app-sidebar-section {
-  padding: 2em;
-}
-
 .demo-app-main {
   flex-grow: 1;
-  padding: 3em;
+  padding: 1rem;
 }
 
 .fc {
   /* the calendar root */
   max-width: 1100px;
   margin: 0 auto;
+}
+
+/* 버튼들 */
+.fc-button {
+  border: none !important;
+}
+:root {
+  --fc-button-text-color: #fff;
+  --fc-button-bg-color: #1f81e2 !important;
+  --fc-button-active-bg-color: #304457 !important;
+
+  --fc-button-hover-bg-color: #114372 !important;
+}
+
+@media (max-width: 1200px) {
+  /* 상단 툴바 */
+  .fc .fc-toolbar {
+    flex-direction: column;
+  }
+
+  /* 툴바 안의 div */
+  .fc .fc-toolbar div {
+    margin: 0.3rem;
+  }
+  .demo-app {
+    height: 100% !important;
+    min-height: 55rem !important;
+  }
+
+  /* month 그리드, 달력 */
+  .fc-scroller-harness-liquid {
+    height: 100% !important;
+    min-height: 30rem !important;
+  }
 }

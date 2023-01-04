@@ -77,3 +77,16 @@
   font-size: 1.5rem;
   margin: 0.2rem 0;
 }
+
+@media (max-width: 1200px) {
+  /* 파츠 선택 ul */
+  .select_parts {
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+  }
+  /* 파츠 선택 각각 */
+  .select_parts li {
+    width: 90%;
+  }
+}

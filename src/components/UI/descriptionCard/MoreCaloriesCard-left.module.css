@@ -44,3 +44,34 @@
   object-fit: cover;
   border-radius: 20px;
 }
+
+@media (max-width: 1200px) {
+  /* 메인 카드 */
+  .main_card {
+    margin-top: 3rem;
+  }
+  /* 설명칸 전체 */
+  .main_desc_div {
+    width: 100%;
+    flex-direction: column-reverse;
+  }
+
+  /* 설명칸 텍스트칸 Div */
+  .main_desc_text_ul {
+    width: 90%;
+    padding: 0;
+    margin: 0 auto;
+  }
+
+  /* 설명칸 이미지칸 */
+  .main_desc_img_div {
+    padding: 0;
+  }
+  /* 설명칸 이미지칸 안의 이미지 */
+  .main_desc_img_div img {
+    width: 95%;
+    height: 20rem;
+    margin: 0 auto;
+    object-fit: cover;
+  }
+}

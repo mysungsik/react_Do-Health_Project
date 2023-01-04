@@ -14,3 +14,64 @@
         -webkit-background-clip: text;
         background-clip: text;
     }
+
+2. 모바일용 헤더와 모달의 생성, 실행
+
+3. 옆으로 회전시킨 라인이 바깥으로 삐져나올때
+
+    : 감싸는 바깥 div 를 만들어서 overflow hidden 을 한다.
+
+        /* 크로스 라인  Green-rotate */
+            .cross_line_green_rotate {
+            position: relative;
+            background-color: var(--loss-weight-parts-intro-background-color);
+            height: 3rem;
+            margin: 1.5rem 0;
+            border: none;
+            z-index: 2;
+            opacity: 0.8;
+            transform: rotate(-5deg);
+            width: 110%;
+            margin-left: -2rem;
+        }
+
+
+        /* 크로스 그린 라인 div */
+            .cross_line_div {
+            width: 100%;
+            overflow: hidden;
+            height: 20rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+4. fullcalendar CSS 사용법
+
+    1) 정의된 css는 DOCS 를 통해 변경 가능하다.
+        https://fullcalendar.io/docs/css-customization
+
+    2) 직접적인 크기 조정은, 개발자 도구에서, className 을 찾은 후, 직접 변경한다.
+
+        @media (max-width: 1200px) {
+            /* 상단 툴바 */
+            .fc .fc-toolbar {
+            flex-direction: column;
+            }
+        
+            /* 툴바 안의 div */
+            .fc .fc-toolbar div {
+            margin: 0.3rem;
+            }
+            .demo-app {
+            height: 100% !important;
+            min-height: 55rem !important;
+            }
+        
+            /* month 그리드, 달력 */
+            .fc-scroller-harness-liquid {
+            height: 100% !important;
+            min-height: 30rem !important;
+            }
+        }
+        

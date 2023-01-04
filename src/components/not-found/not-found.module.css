@@ -1,6 +1,6 @@
 .main_div {
   margin-top: 7rem;
-  background-color: var(--find-foods-parts-background-color);
+  background-color: var(--loss-weight-parts-intro-background-color);
   display: flex;
   justify-content: space-between;
 }
@@ -17,35 +17,13 @@
   margin-left: 5rem;
 }
 
-/* 메인 타이틀 텍스트  [ Do-Eat ] */
+/* 메인 타이틀 */
 .main_title_text_section_textP {
   display: flex;
   align-items: center;
   font-size: 3rem;
   font-weight: 550;
   margin-left: 5rem;
-}
-
-/* 메인 타이틀 텍스트 [ - ] */
-.main_title_text_section_textP span {
-  display: inline-block;
-  margin-left: 0.5rem;
-  font-weight: 700;
-  font-size: 3rem;
-}
-
-/* 메인 타이틀 이미지 섹션*/
-.main_title_img_section {
-  margin: auto 0;
-  margin-right: 10%;
-}
-
-.main_title_img_section img {
-  width: 30rem;
-  height: 20rem;
-  z-index: 1;
-  object-fit: cover;
-  border-radius: 20px;
 }
 
 /* 크로스라인 */
@@ -55,11 +33,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-}
-
-.sub_description img {
-  width: 3rem;
-  margin-right: 1rem;
+  margin-bottom: 30%;
 }
 
 @media (max-width: 1200px) {
@@ -70,7 +44,7 @@
   .main_title_text_section p {
     margin-left: 0;
   }
-  /* 메인 타이틀 텍스트  [ Do-Eat ] */
+  /* 메인 타이틀 텍스트  [ Do-Loss ] */
   .main_title_text_section_textP {
     width: 100%;
     display: flex;

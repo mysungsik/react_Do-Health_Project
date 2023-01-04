@@ -74,6 +74,10 @@
 }
 
 @media (max-width: 1200px) {
+  /* 메인페이지 메인섹션1 전체 */
+  .main_div {
+    margin-top: 17rem;
+  }
   /* 운동 방법을 모르시겠다면 */
   .how_to_workout_textP {
     font-size: 1.2rem;

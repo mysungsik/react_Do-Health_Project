@@ -96,3 +96,18 @@
   font-size: 2rem;
   text-align: center;
 }
+
+@media (max-width: 1200px) {
+  /*  불태워야하는 칼로리 섹션, 추가 소모 칼로리 DIV  [ 불태워야하는 칼로리 DIV ]*/
+  .information_section_more_calories {
+    margin: 0 auto;
+    text-align: center;
+  }
+  /*  불태워야하는 칼로리 섹션 [ 불 이모티콘 + TEXT ]*/
+  .information_section_more_calories div {
+    flex-direction: column;
+  }
+  .information_section_more_calories_calories {
+    margin-left: 0;
+  }
+}

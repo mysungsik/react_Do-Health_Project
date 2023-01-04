@@ -35,6 +35,8 @@
   border-radius: 20px;
   width: 30rem;
   height: 45rem;
+
+  object-fit: cover;
 }
 
 /* 메인 설명칸 전체 */
@@ -69,4 +71,70 @@
   border-radius: 20px;
   width: 30rem;
   height: 45rem;
+  object-fit: cover;
+}
+
+@media (max-width: 1200px) {
+  /* 두-파츠 Description 전체 */
+  .main_div {
+    margin-top: 4rem;
+    text-align: center;
+    padding: 0;
+  }
+  /* 첫번째 설명칸 전체 */
+  .des_intro {
+    flex-direction: column;
+  }
+
+  /* 첫번째 설명칸, 텍스트 Div */
+  .des_intro_text {
+    margin-right: 0;
+    margin-bottom: 2rem;
+  }
+  /* 첫번째 설명칸, 텍스트 Div, 타이틀 */
+  .des_intro_textH {
+    margin-left: 0;
+  }
+  /* 첫번째 설명칸, 텍스트 Div, 작은설명들 */
+  .des_intro_textP {
+    margin-left: 0;
+  }
+
+  /* 첫번째 설명칸, 이미지 자체 */
+  .des_intro_img img {
+    border-radius: 20px;
+    width: 95%;
+    max-width: 30rem;
+    height: 30rem;
+  }
+
+  /* 메인 설명칸 전체 */
+  .des_main {
+    margin-top: 3rem;
+    flex-direction: column-reverse;
+  }
+
+  /* 메인 설명칸, 텍스트 Div */
+  .des_main_text {
+    margin-left: 0;
+    margin-bottom: 2rem;
+  }
+
+  /* 메인 설명칸, 텍스트 Div, 타이틀 */
+  .des_main_textH {
+    margin-left: 0;
+  }
+
+  /* 메인 설명칸, 텍스트 Div, 작은설명들 */
+  .des_main_textP {
+    margin-left: 0;
+  }
+
+  /* 메인 설명칸, 이미지 자체 */
+  .des_main_img img {
+    border-radius: 20px;
+    width: 95%;
+    max-width: 30rem;
+    height: 30rem;
+  }
 }

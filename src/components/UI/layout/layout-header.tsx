@@ -39,7 +39,7 @@ const LayoutHeader = () => {
           </Link>
         )}
         {cookies["auth-cookie"] && (
-          <Link to="/calenda">
+          <Link to="/calendar">
             <li> 캘린더 + </li>
           </Link>
         )}

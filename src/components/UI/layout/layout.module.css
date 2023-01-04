@@ -1,8 +1,17 @@
 .mobile {
   display: none;
 }
+
 .desk {
   display: block;
+}
+
+.show {
+  display: block;
+}
+
+.hide {
+  display: none;
 }
 
 @media (max-width: 1200px) {

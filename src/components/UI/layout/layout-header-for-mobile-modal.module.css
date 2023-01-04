@@ -4,15 +4,44 @@
   position: fixed;
   top: 0;
   right: 0;
-  width: 50%;
+  width: 100%;
+  max-width: 32rem;
   padding-top: 2rem;
+  padding-bottom: 4rem;
   margin-bottom: 10rem;
+  border-bottom-left-radius: 20px;
+  box-shadow: 2px 2px 5px rgba(45, 45, 45, 0.607);
   z-index: 10;
+  animation: toLeft 700ms ease-in-out;
 }
 
+/* 회색 칸막이 */
 .main_header hr {
   margin: 2rem;
   width: 80%;
+}
+
+/* 로고와 닫기버튼 이 있는 DIv */
+.logo_and_X {
+  display: flex;
+  justify-content: space-between;
+}
+
+/* X버튼 */
+.header_X {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 1rem;
+  margin-right: 15%;
+  width: 3rem;
+  height: 3rem;
+  transition: all 250ms ease-out;
+}
+
+.header_X:hover {
+  transform: rotate(12deg) scale(1.03);
+  cursor: pointer;
 }
 
 /* 로고Div (Link) */
@@ -23,9 +52,7 @@
   text-decoration: none;
   color: inherit;
   transition: all 200ms ease-out;
-  border: 1px solid;
   width: 13rem;
-  margin-bottom: 5rem;
 }
 
 .header_logo:hover {
@@ -47,7 +74,6 @@
   align-items: center;
   justify-content: center;
   width: 5rem;
-  border: 1px solid;
   transition: all 100ms ease-out;
 }
 
@@ -76,4 +102,13 @@
   width: 5rem;
   height: 3rem;
   margin: 1.5rem 0 1rem 15%;
+}
+
+@keyframes toLeft {
+  0% {
+    transform: translateX(20rem);
+  }
+  100% {
+    transform: translateX(0);
+  }
 }

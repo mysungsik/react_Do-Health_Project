@@ -1,3 +1,69 @@
+/*  전체 */
 .main_div {
-  margin-top: 10rem;
+  text-align: center;
+  padding-top: 5rem;
+  margin-top: 5rem;
+  padding-bottom: 2rem;
+  background-color: var(--loss-weight-parts-intro-background-color-lighter);
+  color: white;
+}
+
+/* 폼 전체 */
+.signup_form {
+  margin: 2rem auto;
+  max-width: 30rem;
+  padding: 2rem;
+  border-radius: 10px;
+  background-color: white;
+  color: black;
+}
+
+/* 폼 안의 항목들 div */
+.signup_form div {
+  margin: 1.2rem 0;
+  display: flex;
+  justify-content: space-between;
+}
+
+/* 폼 안의 input */
+.signup_form input {
+  height: 2rem;
+  width: 50%;
+  max-width: 25rem;
+  border-radius: 5px;
+}
+.signup_form input:hover {
+  background-color: rgba(255, 166, 0, 0.425);
+}
+
+/* 버튼 div */
+.button_div {
+  padding-top: 3rem;
+  justify-content: center !important;
+  margin: 0 auto;
+}
+
+/* 에러 발생시 */
+.error {
+  color: red;
+  font-weight: 600;
+  font-size: 1.1rem;
+  width: 20rem;
+  margin: 0 auto;
+  margin-bottom: 2.5rem;
+}
+
+@media (max-width: 1200px) {
+  /* 폼 안의 항목들 div */
+  .signup_form div {
+    flex-direction: column;
+    align-items: center;
+  }
+  /* 폼 안의 input */
+  .signup_form input {
+    width: 70%;
+
+    max-width: 20rem;
+    margin-top: 0.5rem;
+  }
 }

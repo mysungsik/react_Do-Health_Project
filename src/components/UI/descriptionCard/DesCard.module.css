@@ -19,7 +19,8 @@
 
 /* 설명칸 텍스트칸 Div */
 .main_desc_text_ul {
-  width: 60%;
+  width: 70%;
+  margin: 5rem auto 0 auto;
   list-style: none;
   text-align: left;
   padding: 2rem;
@@ -64,4 +65,24 @@
 /* 유의사항 개별항목 */
 .main_warning_lists li {
   margin: 1rem 0;
+}
+
+@media (max-width: 1200px) {
+  /* 설명칸 전체 */
+  .main_desc_div {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* 설명칸 텍스트칸 Div */
+  .main_desc_text_ul {
+    width: 100%;
+    padding: 0;
+    margin: 1rem auto;
+  }
+  /* 설명칸 이미지칸 */
+  .main_desc_img_div {
+    padding: 0;
+  }
 }

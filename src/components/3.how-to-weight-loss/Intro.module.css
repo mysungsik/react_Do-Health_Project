@@ -1,22 +1,24 @@
 .main_div {
   margin-top: 7rem;
+  background-color: var(--loss-weight-parts-intro-background-color);
+  display: flex;
+  justify-content: space-between;
 }
 
-/* 메인 타이틀 */
-.main_title_text {
+/* 메인 타이틀 Text 섹션 */
+.main_title_text_section {
   width: 100%;
-  background-color: var(--loss-weight-parts-intro-background-color);
-  padding-top: 4rem;
-  z-index: -1;
+  padding: 3rem 0;
+  z-index: 1;
   color: white;
 }
 
-.main_title_text p {
+.main_title_text_section p {
   margin-left: 5rem;
 }
 
-/* 메인 타이틀 텍스트 */
-.main_title_textP {
+/* 메인 타이틀 텍스트  [ Do-Eat ] */
+.main_title_text_section_textP {
   display: flex;
   align-items: center;
   font-size: 3rem;
@@ -24,45 +26,73 @@
   margin-left: 5rem;
 }
 
-/* 메인 타이틀 텍스트 "-" */
-.main_title_textP span {
+/* 메인 타이틀 텍스트 [ - ] */
+.main_title_text_section_textP span {
   display: inline-block;
   margin-left: 0.5rem;
   font-weight: 700;
   font-size: 3rem;
 }
 
-/* 메인 타이틀 이미지 */
-.main_title_img {
-  position: absolute;
-  right: 12%;
-  top: 13rem;
-  z-index: 2;
+/* 메인 타이틀 이미지 섹션*/
+.main_title_img_section {
+  margin: auto 0;
+  margin-right: 10%;
 }
 
-.main_title_img img {
-  width: 35rem;
-  height: 30rem;
-  border-radius: 30px;
-  box-shadow: 2px 2px 5px rgba(46, 46, 46, 0.5);
+.main_title_img_section img {
+  width: 30rem;
+  height: 20rem;
+  z-index: 1;
   object-fit: cover;
-  opacity: 0.9;
+  border-radius: 20px;
 }
 
-/* 작은 설명텍스트들 DIV */
-.main_description {
-  margin-top: 5rem;
-  margin-left: 15%;
-  margin-bottom: 6rem;
+/* 크로스라인 */
+.sub_description {
+  color: white;
+  font-size: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-/* 크로스 라인 */
-.cross_line_green {
-  position: relative;
-  background-color: var(--loss-weight-parts-intro-background-color);
-  height: 3rem;
-  margin: 1.5rem 0;
-  border: none;
-  z-index: 2;
-  opacity: 0.8;
+.sub_description img {
+  width: 3rem;
+  margin-right: 1rem;
+}
+
+@media (max-width: 1200px) {
+  .main_div {
+    flex-direction: column;
+    text-align: center;
+  }
+  .main_title_text_section p {
+    margin-left: 0;
+  }
+  /* 메인 타이틀 텍스트  [ Do-Loss ] */
+  .main_title_text_section_textP {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin: 0 auto;
+    margin-bottom: 2rem;
+  }
+  /* 메인 타이틀 이미지 */
+  .main_title_img_section {
+    width: 100%;
+    margin: 0 auto;
+    margin-right: 0;
+    margin-bottom: 2rem;
+  }
+  .main_title_img_section img {
+    width: 100%;
+    max-width: 45rem;
+    object-fit: cover;
+  }
+  /* 크로스라인 */
+  .sub_description {
+    color: white;
+    font-size: 1.2rem;
+  }
 }

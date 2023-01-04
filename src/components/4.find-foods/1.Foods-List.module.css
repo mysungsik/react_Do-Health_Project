@@ -6,23 +6,6 @@
   margin-bottom: 3rem;
 }
 
-/* 메인 타이틀 DIV */
-.main_div_title {
-  margin: 0;
-  margin-left: 3rem;
-  margin-bottom: 0.5rem;
-  font-size: 2.5rem;
-  display: flex;
-  align-items: center;
-}
-
-/* 메인 타이틀 이미지 */
-.main_div_title img {
-  width: 4rem;
-  height: 4rem;
-  margin-right: 0.5rem;
-}
-
 /* 카테고리 선택 div */
 .select_category {
   margin-left: calc(100% - 35rem);
@@ -117,4 +100,77 @@
   font-weight: 600;
   font-size: 1.1rem;
   transition: all 600ms ease-out;
+}
+
+/* 메인 타이틀 DIV */
+.main_div_title {
+  margin: 0;
+  margin-left: 3rem;
+  margin-bottom: 0.5rem;
+  font-size: 2.5rem;
+  display: flex;
+  align-items: center;
+}
+
+/* 메인 타이틀 이미지 */
+.main_div_title img {
+  width: 4rem;
+  height: 4rem;
+  margin-right: 0.5rem;
+}
+
+@media (max-width: 1200px) {
+  /* 전체 div */
+  .main_grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(27rem, 1fr));
+    margin: 0 auto;
+    margin-bottom: 3rem;
+  }
+
+  /* 카테고리 선택 div */
+  .select_category {
+    margin: 0 auto;
+    width: 23rem;
+    margin-top: 2rem;
+  }
+  /* 카테고리 선택 div의, 각각 list */
+  .select_category li {
+    margin: 0 1rem;
+  }
+  /* 하이라이트 Div 조건1 - 탄수화물  */
+  .selected_hydro {
+    position: absolute;
+    width: 6rem;
+    margin-right: 14rem;
+  }
+  /* 하이라이트 Div 조건2 - 단백질  */
+  .selected_protein {
+    position: absolute;
+    width: 6rem;
+    height: 2.5rem;
+    z-index: 1;
+  }
+  /* 하이라이트 Div 조건3 - 지방  */
+  .selected_fat {
+    position: absolute;
+    width: 6rem;
+    margin-left: 14rem;
+  }
+  /* [이 음식은 어떠신가요? DIV] */
+  .main_div_title {
+    flex-direction: column;
+    width: 100%;
+    padding: 0;
+    margin: 0 auto;
+    margin-top: 2rem;
+  }
+  /* [이 음식은 어떠신가요? 텍스트] */
+  .main_div_title p {
+    margin-top: 0;
+  }
+  /* [ 이 음식은 어떠신가요? 로고] */
+  .main_div_title img {
+    margin-right: 0;
+  }
 }

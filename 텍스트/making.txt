@@ -724,13 +724,13 @@
     2) 음식 리스트
 
         DB "foods"
-            // category : 다이어트, 벌크업, 린매스업
-            // name : xxxxxx, 닭가슴살
-            // majorNutri : 단백질, 지방, 탄수화물
-            // id : f1, f2 ...
-            // nutri : 지방 15g ...
-            // price : 1000 ...
-            // id / img / category / title / majorNutri / nutri / price
+            category : 다이어트, 벌크업, 린매스업
+            name : xxxxxx, 닭가슴살
+            majorNutri : 단백질, 지방, 탄수화물
+            id : f1, f2 ...
+            nutri : 지방 15g ...
+            price : 1000 ...
+            id / img / category / title / majorNutri / nutri / price
 
 [17-1. 파이어베이스에 마이그레이션 하는게, 너무 힘들어서, 페이지만든다.]
 
@@ -859,7 +859,6 @@
     0. 파이어베이스에서 온 Data 재가공 (Array 형태가 아닌, object 로 감싼형태로 오므로)
 
         <helper / fetch-get-exercise.tsx >
-
             : 사용 할 것은 아니지만, 전반적인 기능만 보았다.
 
                 export const getExercise = async () => {
@@ -1164,34 +1163,54 @@
 
 :" 파이어베이스는, 잘못된 정보를 입력하면, error 를 리턴해줍니다."
 
-    < sign-up.tsx >
+        import styles from "./signup-form.module.css";
         import { signupHandler } from "../../helper/signup-handler";
         import { useRef, FormEvent, useState } from "react";
+        import { useHistory } from "react-router-dom";
 
         const SignUpForm = () => {
-        const [error, setError] = useState<string>("");
+            const history = useHistory();
+            const emailRef = useRef<HTMLInputElement>(null);
+            const passwordRef = useRef<HTMLInputElement>(null);
+            const [error, setError] = useState<string>("");
 
-        const submitHanlder = async (e: FormEvent) => {
-            e.preventDefault();
-                    ...
+            const submitHanlder = async (e: FormEvent) => {
+                e.preventDefault();
+                const email = emailRef.current!.value;
+                const password = passwordRef.current!.value;
 
-            if (responseData.error.message === "EMAIL_EXISTS") {        // 파이어베이스에서 넘겨주는 error
-                setError("이미 존재하는 이메일 입니다.");     
-            } else if (
-            responseData.error?.message === "WEAK_PASSWORD : Password should be at least 6 characters"    // 파이어베이스에서 넘겨주는 error
-            ) {
-                setError("패스워드가 6자리 이하입니다.");
-            }
+                const responseData = await signupHandler(email, password);
+
+                if (responseData.idToken) {
+                    history.replace("/");
+                } else if (responseData.error.message === "EMAIL_EXISTS") {
+                    setError("이미 존재하는 이메일 입니다.");
+                } else if ( responseData.error?.message === "WEAK_PASSWORD : Password should be at least 6 characters") {
+                    setError("패스워드가 6자리 이하입니다.");
+                }
+            };
+            return (
+                <div className={styles.main_div}>
+                        ...
+                    <form 3onSubmit={submitHanlder} className={styles.signup_form}>
+                        {error && <p className={styles.error}> {error}</p>}
+                        <div>
+                            <label> 이메일을 입력해주세요</label>
+                            <input type={"email"} ref={emailRef} required />
+                        </div>
+                        <div>
+                            <label> 비밀번호를 입력해주세요</label>
+                            <input type={"password"} ref={passwordRef} required />
+                        </div>
+                        <div className={styles.button_div}>
+                            <button className="Just_Click_Button_Default"> 제출</button>
+                        </div>
+                    </form>
+                </div>
+            );
         };
 
-        return (
-            <div className={styles.main_div}>
-                    ...
-            <form onSubmit={submitHanlder} className={styles.signup_form}>
-                {error && <p> {error}</p>}          // 넘겨주는 에러로, 원하는 메시지를 만들어 넘긴다.
-                <div>
-
-
+        export default SignUpForm;
 
 
 27. react-cookie 를 이용하여, 로그인상태를 유지시킨다. 로그아웃 버튼을 만든다.
@@ -1456,7 +1475,7 @@
 
     리액트 DOCS : https://fullcalendar.io/docs/react
     리액트 EXAMPLE : https://stackblitz.com/github/fullcalendar/fullcalendar-examples/tree/main/react?file=src%2Fevent-utils.js,src%2FDemoApp.jsx
-    타입스크립트 EXAMPLE : https://github.com/fullcalendar/fullcalendar-examples/tree/main/react-typescript/src
+    타입스크립트 DOCS : https://github.com/fullcalendar/fullcalendar-examples/tree/main/react-typescript/src
 
     ** 일단 타입스크립트 EXAMPLE 을 전부 가져왔다
         DemoApp.jsx
@@ -1690,10 +1709,10 @@
         }
         
         interface Props {
-            calendarData: { title: string; start: string; email: string }[];    // type 지정후
+            calendarData: { title: string; start: string; email: string }[];    // Props type 지정후
         }
         
-        export default class Calendar extends React.Component<Props, {}, DemoAppState> {
+        export default class Calendar extends React.Component<Props, {}, DemoAppState> {    // Props 타입을 등록하고
             state: DemoAppState = {
                 weekendsVisible: true,
                 currentEvents: [],

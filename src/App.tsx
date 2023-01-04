@@ -3,6 +3,8 @@ import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { RootState } from "./store";
 
+import { removeCalendarToDb } from "./helper/calendar-remove-to-DB";
+
 import MainPage from "./pages/1.mainpage";
 import HowToWorkOut from "./pages/2.how-to-workout";
 import HowToWeightLoss from "./pages/3.how-to-weight-loss";
@@ -11,9 +13,9 @@ import Adding from "./components/0.adding/adding";
 import SignUp from "./pages/5.signup";
 import SignIn from "./pages/6.signin";
 import Calendar from "./fullcalendar/calendar";
+import NotFoundPage from "./pages/notfountd";
 
 import { PostCalendarType } from "./store/calendar-slice";
-
 import {
   sendRequest as sendRequestForExercise,
   useAppDispatch,
@@ -21,13 +23,12 @@ import {
 import { sendRequest as sendRequestForFoods } from "./store/foods-action";
 import { sendRequest as sendRequestForCalendars } from "./store/calendar-action";
 import { useCookies } from "react-cookie";
-import NotFoundPage from "./pages/notfountd";
 
 function App() {
   const [cookies] = useCookies(["auth-cookie"]);
   const history = useHistory();
 
-  // 캘린더 값 넘겨받기
+  // Store 에서 캘린더 값 넘겨받기
   const calendarData = useSelector(
     (state: RootState) => state.calendar.calendarData
   );
@@ -40,6 +41,19 @@ function App() {
       (data) => data.email === cookies["auth-cookie"].email
     );
   }
+
+  // 캘린더 안의 delete 하기 위한 값 넘겨받기, 삭제하기
+  const dataFromCalendarForDelete = (id: string, email: string) => {
+    const selectedFirebaseData = calendarData.find(
+      (item) => item.id === id && item.email === email
+    );
+
+    if (selectedFirebaseData !== undefined) {
+      const selectedFirebaseId = selectedFirebaseData.firebaseid;
+
+      removeCalendarToDb(selectedFirebaseId);
+    }
+  };
 
   // getOut함수 만들기 값 넘겨받기
   const getOut = () => {
@@ -77,13 +91,16 @@ function App() {
         <Route path={"/sign-in"}>
           <SignIn />
         </Route>
-        <Route path={"/calendar"}>
-          <Calendar
-            calendarData={filteredCalendar}
-            getOut={getOut}
-            isLogedIn={cookies["auth-cookie"]} // 로그인 했는지 확인
-          />
-        </Route>
+        {cookies["auth-cookie"] && (
+          <Route path={"/calendar"}>
+            <Calendar
+              calendarData={filteredCalendar}
+              getOut={getOut}
+              isLogedIn={cookies["auth-cookie"]} // 로그인 했는지 확인
+              dataFromCalendarForDelete={dataFromCalendarForDelete}
+            />
+          </Route>
+        )}
         <Route path={"*"}>
           <NotFoundPage />
         </Route>

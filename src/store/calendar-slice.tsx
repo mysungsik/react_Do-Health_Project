@@ -1,6 +1,8 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 export interface PostCalendarType {
+  firebaseid:string;
+  id:string;
   title: string;
   start: string;
   email: string;

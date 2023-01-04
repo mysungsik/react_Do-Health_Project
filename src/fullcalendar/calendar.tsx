@@ -16,27 +16,40 @@ import { addCalendarToDb } from "../helper/calendar-add-to-DB"; // 내가 넣은
 interface DemoAppState {
   weekendsVisible: boolean;
   currentEvents: EventApi[];
+  textid: string; // 미리 state의 type 을 등록
+  email: string; // 미리 state의 type 을 등록
+  useEmail: string;
 }
 
 interface Props {
   calendarData: { title: string; start: string; email: string }[];
   getOut: () => void;
-  isLogedIn: string;
+  isLogedIn: { idToken: string; email: string };
+  dataFromCalendarForDelete: (id: string, email: string) => void;
 }
 
 export default class Calendar extends React.Component<Props, {}, DemoAppState> {
   state: DemoAppState = {
     weekendsVisible: true,
     currentEvents: [],
+    textid: "", // state 사용을 위한 초기화
+    email: "", // state 사용을 위한 초기화
+    useEmail: this.props.isLogedIn.email,
   };
 
   render() {
     const calendarData = this.props.calendarData;
     const getOut = this.props.getOut;
     const isLogedIn = this.props.isLogedIn;
+    const dataFromCalendarForDelete = this.props.dataFromCalendarForDelete;
+    const { textid, email, useEmail } = this.state; // delete 버튼을 누르면, state 를 받아온다.
 
-    if (!isLogedIn) {
+    if (!isLogedIn.email) {
       getOut();
+    }
+
+    if (textid) {
+      dataFromCalendarForDelete(textid, email); // App.js 로 넘긴다.
     }
 
     return (
@@ -94,9 +107,10 @@ export default class Calendar extends React.Component<Props, {}, DemoAppState> {
       });
       // 내가 넣는 함수 - DB 에 캘린터 값 넣기
       addCalendarToDb({
+        id: createEventId(),
         title,
         start: selectInfo.startStr,
-        email: "test@test.com",
+        email: this.state.useEmail,
       });
     }
   };
@@ -109,7 +123,18 @@ export default class Calendar extends React.Component<Props, {}, DemoAppState> {
       )
     ) {
       clickInfo.event.remove();
+      this.setState({
+        textid: clickInfo.event._def.publicId,
+        email: clickInfo.event.extendedProps.email,
+      });
     }
+  };
+
+  initializeState = () => {
+    this.setState({
+      textid: "",
+      email: "",
+    });
   };
 
   handleEvents = (events: EventApi[]) => {
@@ -125,20 +150,5 @@ function renderEventContent(eventContent: EventContentArg) {
       <b>{eventContent.timeText}</b>
       <i>{eventContent.event.title}</i>
     </>
-  );
-}
-
-function renderSidebarEvent(event: EventApi) {
-  return (
-    <li key={event.id}>
-      <b>
-        {formatDate(event.start!, {
-          year: "numeric",
-          month: "short",
-          day: "numeric",
-        })}
-      </b>
-      <i>{event.title}</i>
-    </li>
   );
 }

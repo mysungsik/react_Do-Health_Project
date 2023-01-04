@@ -18,7 +18,7 @@ Do-health 와 함께, 운동의 정보를 알아가고, 자신만의 식단을 �
 
 <br><br>
 
-**데모** : https://react-do-health-project-1zhiti3pl-mysungsik.vercel.app/
+**데모** : https://react-do-health-project-igz5e1w5w-mysungsik.vercel.app/
 <br><br>
 
 ## &#127828; 사용 기술
@@ -158,9 +158,7 @@ FullCalendar
 ### &#129372; 식단 +
 
 <hr>
-
 <img src="/public/for-markdown-img/10.do-eat.png" style="width:500px"; style="height:800px";>
-
 <br>
 
 - 각 음식을 카테고리별로 정리, 카테고리를 누르면, 그에 해당하는 음식들을 나열합니다.
@@ -173,9 +171,7 @@ FullCalendar
 ### &#129372; 로그인 후 찜하기, 식단 캘린더 기능
 
 <hr>
-
 <img src="/public/for-markdown-img/11.calendar.png" style="width:500px"; style="height:800px";>
-
 <br>
 
 - Full-Calendar 라이브러리를 사용하였습니다.

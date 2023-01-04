@@ -1,4 +1,5 @@
 export type PostCalendarType = {
+  id: string;
   title: string;
   start: string;
   email: string;

@@ -24,6 +24,7 @@ export const sendRequest = () => {
 
       for (const key in responseData) {
         refineData.push({
+          firebaseid:key,
           id: createEventId(),
           title: responseData[key].title,
           start: responseData[key].start,

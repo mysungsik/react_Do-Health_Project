@@ -109,7 +109,7 @@ const WhatShouldYouDo = () => {
                     text: "세로토닌을 활성화 하여, 스트레스가 감소합니다",
                   },
                 ]}
-                time={MoreCaloiresState / 576}
+                time={(MoreCaloiresState / 576) * 60}
               />
             </div>
             <div>
@@ -140,7 +140,7 @@ const WhatShouldYouDo = () => {
                     text: "물이 가져오는 편안함은, 심신을 안정시킵니다",
                   },
                 ]}
-                time={MoreCaloiresState / 892}
+                time={(MoreCaloiresState / 892) * 60}
               />
             </div>
             <div></div>
@@ -163,7 +163,7 @@ const WhatShouldYouDo = () => {
                   text: "생각보다 관절에 무리를 주지 않습니다",
                 },
               ]}
-              time={MoreCaloiresState / 588}
+              time={(MoreCaloiresState / 588) * 60}
             />
 
             <div>
@@ -190,7 +190,7 @@ const WhatShouldYouDo = () => {
                     text: "안전사고에 유의하세요",
                   },
                 ]}
-                time={MoreCaloiresState / 440}
+                time={(MoreCaloiresState / 440) * 60}
               />
             </div>
           </div>

@@ -49,7 +49,7 @@ const MainContentSection1 = () => {
         </div>
         <div className={styles.how_to_workout_image_div}>
           <AnimationOnScroll animateIn="animate__fadeInRight" duration={1.5}>
-            <img src="/mainpage/do-parts.jpg" alt={"description"} />
+            <img src="/mainpage/do-parts.JPG" alt={"description"} />
           </AnimationOnScroll>
         </div>
       </section>

@@ -2074,11 +2074,11 @@
             
             export default class Calendar extends React.Component<Props, {}, DemoAppState> {    // state 와, Props 등, 타입을 전부 넣는다.
                 state: DemoAppState = {     // state 의 초기화
-                weekendsVisible: true,
-                currentEvents: [],
-                textid: "",                         // state 사용을 위한 초기화
-                email: "",                          // state 사용을 위한 초기화
-                useEmail: this.props.isLogedIn.email,
+                    weekendsVisible: true,
+                    currentEvents: [],
+                    textid: "",                         // state 사용을 위한 초기화
+                    email: "",                          // state 사용을 위한 초기화
+                    useEmail: this.props.isLogedIn.email,
                 };
   
             

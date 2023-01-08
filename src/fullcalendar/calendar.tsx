@@ -4,7 +4,6 @@ import {
   DateSelectArg,
   EventClickArg,
   EventContentArg,
-  formatDate,
 } from "@fullcalendar/core";
 import FullCalendar from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid";
@@ -42,7 +41,7 @@ export default class Calendar extends React.Component<Props, {}, DemoAppState> {
     const getOut = this.props.getOut;
     const isLogedIn = this.props.isLogedIn;
     const dataFromCalendarForDelete = this.props.dataFromCalendarForDelete;
-    const { textid, email, useEmail } = this.state; // delete 버튼을 누르면, state 를 받아온다.
+    const { textid, email } = this.state; // delete 버튼을 누르면, state 를 받아온다.
 
     if (!isLogedIn.email) {
       getOut();

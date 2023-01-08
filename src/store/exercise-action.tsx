@@ -3,12 +3,11 @@ import { exerciseActions } from "./exercise-slice";
 import { useDispatch } from "react-redux"; // useDispath 의 사전 생성
 import type { AppDispatch } from "../store/index"; //  action 생성자용 Dispatch 타입
 
+// Thunk 생성
 export const sendRequest = () => {
   return async (dispatch: Dispatch) => {
-    // 타입은 Dispatch 이다.
 
     const fetchData = async () => {
-      // 비동기 함수 만들어서
       const response = await fetch(
         "https://do-health-project-default-rtdb.firebaseio.com/exercise.json"
       );

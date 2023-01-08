@@ -14,7 +14,6 @@ export type PartState = {
   };
 };
 
-// Partial 를 통해, 혹시 모를 추가적인 State 에 대해, 유동적으로 적용되게 만든다.
 const initialState: PartState = {
   descriptionState: {
     onDefaultPart: true,

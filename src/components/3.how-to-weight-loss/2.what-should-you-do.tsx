@@ -15,9 +15,7 @@ const WhatShouldYouDo = () => {
   );
   // AMR 와 추가 칼로리 State
   const AMRState = useSelector((state: RootState) => state.calulate.AMR); // AMR State, from store
-  const MoreCaloiresState = useSelector(
-    (state: RootState) => state.calulate.MoreCaloires
-  );
+  const MoreCaloiresState = useSelector((state: RootState) => state.calulate.MoreCaloires);
 
   const dispatch = useDispatch();
 

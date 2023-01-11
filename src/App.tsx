@@ -23,10 +23,12 @@ import {
 import { sendRequest as sendRequestForFoods } from "./store/foods-action";
 import { sendRequest as sendRequestForCalendars } from "./store/calendar-action";
 import { useCookies } from "react-cookie";
+import { userAction } from "./store/userData-slice";
 
 function App() {
   const [cookies] = useCookies(["auth-cookie"]);
   const history = useHistory();
+  const dispatch = useAppDispatch();
 
   // Store 에서 캘린더 값 넘겨받기
   const calendarData = useSelector(
@@ -60,11 +62,15 @@ function App() {
     history.replace("/");
   };
 
-  const dispatch = useAppDispatch();
   useEffect(() => {
     dispatch(sendRequestForExercise());
     dispatch(sendRequestForFoods());
     dispatch(sendRequestForCalendars());
+    if (cookies["auth-cookie"]) {
+      dispatch(
+        userAction.loginedUser({ userEmail: cookies["auth-cookie"].email })
+      );
+    }
   }, [dispatch]);
 
   return (

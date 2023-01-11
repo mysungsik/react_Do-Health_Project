@@ -9,7 +9,7 @@ import FullCalendar from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import timeGridPlugin from "@fullcalendar/timegrid";
 import interactionPlugin from "@fullcalendar/interaction";
-import { createEventId } from "./event-initial";
+import { createEventId, INITIAL_EVENTS } from "./event-initial";
 import { addCalendarToDb } from "../helper/calendar-add-to-DB"; // 내가 넣은 DB에 넣을 함수
 
 interface DemoAppState {
@@ -68,6 +68,7 @@ export default class Calendar extends React.Component<Props, {}, DemoAppState> {
             selectMirror={true}
             dayMaxEvents={true}
             weekends={this.state.weekendsVisible}
+            initialEvents={INITIAL_EVENTS}
             events={calendarData} // alternatively, use the `events` setting to fetch from a feed
             select={this.handleDateSelect}
             eventContent={renderEventContent} // custom render function

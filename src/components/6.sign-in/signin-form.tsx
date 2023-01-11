@@ -11,21 +11,25 @@ const SignInForm = () => {
   const emailRef = useRef<HTMLInputElement>(null);
   const passwordRef = useRef<HTMLInputElement>(null);
 
+
   const submitHanlder = async (e: FormEvent) => {
     e.preventDefault();
     const email = emailRef.current!.value;
     const password = passwordRef.current!.value;
     const responseData = await signinHandler(email, password);
 
-    if (responseData.idToken) {   // idToken 이 있다면 OK
+    if (responseData.idToken) {
+      // idToken 이 있다면 OK
       setCookie("auth-cookie", {
         idToken: responseData.idToken,
         email: responseData.email,
       });
       history.replace("/");
-    } else if (responseData.error.message === "EMAIL_NOT_FOUND") {      // 아니면 에러메시지
+    } else if (responseData.error.message === "EMAIL_NOT_FOUND") {
+      // 아니면 에러메시지
       setError("이메일을 잘못 입력하셨습니다.");
-    } else if (responseData.error.message === "INVALID_PASSWORD") {     // 아니면 에러메시지
+    } else if (responseData.error.message === "INVALID_PASSWORD") {
+      // 아니면 에러메시지
       setError("패스워드를 잘못 입력하셨습니다.");
     }
   };

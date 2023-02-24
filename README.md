@@ -77,14 +77,14 @@ root
 ├─ public
 └── src
     ├─ components      * 컴포넌트들이 들어있습니다.
-    │ ├─ 0.adding
-    │ ├─ 1.main-components
+    │ ├─ 0.adding           * ADMIN 유저가, DB에 데이터를 넣는 컴포넌트입니다.
+    │ ├─ 1.main-components  * HOMEPAGE 컴포넌트가 들어있습니다.
     │ ├─ 2.how-to-workout
     │ ├─ 3.how-to-wight-loss
     │ ├─ 4.find-foods
     │ ├─ 5.sign-up
     │ ├─ 6.sign-in
-    │ ├─ noutfound
+    │ ├─ noutfound      * 페이지 주소를 잘못적을 경우 나오는 컴포넌트입니다.
     │ └─ UI
     │   ├─ descriptionCard
     │   ├─ foodsCard

@@ -89,6 +89,7 @@ const EstimateBMR = () => {
               placeholder="키 (cm)"
               required
               ref={tallRef}
+            
             />
           </div>
           <hr className="cross_line_gray_normal" />

@@ -6,7 +6,6 @@ import type { AppDispatch } from "../store/index"; //  action 생성자용 Dispa
 // Thunk 생성
 export const sendRequest = () => {
   return async (dispatch: Dispatch) => {
-
     const fetchData = async () => {
       const response = await fetch(
         "https://do-health-project-default-rtdb.firebaseio.com/exercise.json"

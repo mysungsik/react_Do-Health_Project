@@ -1073,7 +1073,7 @@
     파이어베이스 auth
         https://firebase.google.com/docs/reference/rest/auth?hl=en&authuser=0#section-create-email-password
 
-23. ".env" 를 통해, github 에 올라가는 것을 방지하고, 유저들에게 안보이게 만든다.
+23. ".env" 를 통해, github 에 올라가는 것을 방지하고, 유저들에게 안보이게 만든다. 환경변수
 
     1. npm i dotenv
     2. .env 파일을 root 디렉토리에 만든다.

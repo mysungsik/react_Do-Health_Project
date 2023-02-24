@@ -236,6 +236,24 @@ const SignInForm = () => {
 - "모든 운동 데이터를 Redux-Store 에서 가져온 후", Array.filter() 매서드를 통해, 걸러냅니다.
 - 파츠 버튼은, part를 담고있는 State를 boolean 타입으로 토글하며, 토글(true)된 파츠는, 활성화됩니다.
 
+```js
+    <store / choose-part-slice.tsx >
+
+    const ChoosPartsSlice = createSlice({
+        name: "choose-part",
+        initialState,
+        reducers: {
+            ChestDescription(state) {
+            state.descriptionState = { ...initialState.descriptionState };
+            state.descriptionState.onDefaultPart = false;
+            state.descriptionState.onChestPart = true;
+            },
+            BackDescription(state) {
+            state.descriptionState = { ...initialState.descriptionState };
+            state.descriptionState.onDefaultPart = false;
+                ...
+```
+
 **<선택파츠>**
 
 ```js
@@ -314,7 +332,31 @@ const SignInForm = () => {
 
 - 각 음식을 카테고리별로 정리, 카테고리를 누르면, 그에 해당하는 음식들을 나열합니다.
 - 각 음식들은 Food Card Module 에 의해 반복됩니다.
-- 자동 grid 를 통해, 반응형 grid 를 만들었습니다.
+- 반응형 grid 를 만들었습니다.
+
+```js
+
+    움직이는 버튼 backround 를 위한 class 변경
+
+    < comnponents / 4.find-foods / 1.Foods-List.tsx >
+
+        if (selected === "탄수화물") {
+            selected_style = styles.selected_hydro; // 선택시 클래스 변경
+            text_highlight_hydro = styles.selected_text_hydro; // 선택시 클래스 변경
+        }
+        if (selected === "단백질") {
+            selected_style = styles.selected_protein;
+            text_highlight_protein = styles.selected_text_protein;
+        }
+        if (selected === "지방") {
+            selected_style = styles.selected_fat;
+            text_highlight_fat = styles.selected_text_fat;
+        }
+        return (
+                ...
+            <div className={selected_style}></div>
+                        ...
+```
 
 <br>
 <br>
@@ -328,5 +370,38 @@ const SignInForm = () => {
 - Full-Calendar 라이브러리를 사용하였습니다.
 - 로그인을 하게되면, 캘린더 기능을 사용할 수 있습니다.
 - 캘린더에 등록하는 모든 데이터는 Fire-Base DB 에 저장되며, 각 유저별 다른 데이터로 자동 필터됩니다.
+
+```js
+
+    <helper / calendar-add-to-DB.tsx >
+
+    export const addCalendarToDb = async (exerciseData: PostCalendarType) => {
+        await fetch(
+            "https://do-health-project-default-rtdb.firebaseio.com/user/calendar.json",
+            {
+            method: "POST",
+            body: JSON.stringify(exerciseData),
+            headers: {
+                "Content-Type": "application/json",
+            },
+            }
+        );
+    };
+
+    <helper / remove-add-to-DB.tsx >
+
+        export const removeCalendarToDb = async (firebaseid: string) => {
+            await fetch(
+        `https://do-health-project-default-rtdb.firebaseio.com/user/calendar/${firebaseid}.json`,
+        {
+            method: "DELETE",
+        }
+        );
+    };
+
+
+```
+
+풀캘린더의 로직은 components 안의 fullcalendar 폴더에 있습니다.
 
 <br>

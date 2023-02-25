@@ -140,9 +140,37 @@ store 안에는 slice와 action 이 들어있습니다.
 
 ### &#129372; 로그인 및 회원가입
 
+
+FireBase Auth 를 통해, 회원가입 및 로그인을 구현합니다
+
+```js
+
+Firebase AUTH 는 FireBase와의 "API 통신"을 통해 
+firebase 에 CLIEND ID 와 CLIENT PASSWORD 를 포함한 URL 을 요청하여 
+적절한 값일 경우 "Access_Token 을 JWT 의 형식으로 응답"하는 방식입니다.
+
+JWT 의 값을 받은 유저는 쿠키에 해당 값을 저장하고 로그인 유지의 용도로 사용합니다.
+
+쿠키를 사용한 이유는 Access_Token 자체에 중요 정보가 없기 때문입니다.
+또한, 작은 용량을 가진 쿠키에도 충분히 데이터 크기가 작기 때문에 쿠키로 저장하였습니다.
+
+```
+
+
+<p> <img src= "https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2F9ZkJt%2Fbtr0HSg1E4L%2F480UQW6Vk6oXnFUz6MPbpk%2Fimg.png" style="width=500px" style="height=350px"/>
+</p>
+
 <hr>
-<img src="/public/for-markdown-img/1.login.png" style="width:500px"; style="height:800px"; >
-<img src="/public/for-markdown-img/2.signup.png" style="width:500px"; style="height:800px";>
+
+
+
+<p>
+<img src="/public/for-markdown-img/1.login.png" style="width:300px"; style="height:480px"; >
+<img src="/public/for-markdown-img/2.signup.png" style="width:300px"; style="height:480px";>
+</p>
+
+
+
 <br>
 
 - fetch 를 통해, 적절한 검증 후 DB에 정보 저장
@@ -154,6 +182,29 @@ store 안에는 slice와 action 이 들어있습니다.
 - FireBase Auth 에, 유저의 유효한 idToken 을 함께 보내, 유저의 아이디와 비밀번호 변경 가능
 
 ```js
+< helper / signin-handler.tsx >
+
+    export const signinHandler = async (email: string, password: string) => {
+      const sendRequest = await fetch(
+        `https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${process.env.REACT_APP_FIREBASE_API_KEY}`,
+        {
+          method: "POST",
+          body: JSON.stringify({ email, password, returnSecureToken: true }),
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+      const responseData = await sendRequest.json();
+
+      return responseData;
+    };
+
+```
+```js
+
+< components / 5.sign-in / signin-form.tsx >
+
 const SignInForm = () => {
   const history = useHistory();
   const [cookies, setCookie] = useCookies(["auth-cookie"]);
@@ -192,7 +243,7 @@ const SignInForm = () => {
 ### &#129372; 메인페이지
 
 <hr>
-<img src="/public/for-markdown-img/0.mainpage.PNG" style="width:500px"; style="height:800px";>
+<img src="/public/for-markdown-img/0.mainpage.PNG" style="width:300px"; style="height:480px"; >
 <br>
 
 - react-animation-on-scroll 을 이용해, 스크롤 애니메이션을 만들었습니다.
@@ -227,14 +278,20 @@ const SignInForm = () => {
 ### &#129372; 헬스 +
 
 <hr>
-<img src="/public/for-markdown-img/3.do-part.png" style="width:500px"; style="height:800px";>
-<img src="/public/for-markdown-img/4.do-part.png" style="width:500px"; style="height:800px";>
-<img src="/public/for-markdown-img/5.do-part.png" style="width:500px"; style="height:800px";>
+
+<p>
+<img src="/public/for-markdown-img/3.do-part.png" style="width:300px"; style="height:480px"; >
+<img src="/public/for-markdown-img/4.do-part.png" style="width:300px"; style="height:480px"; >
+<img src="/public/for-markdown-img/5.do-part.png" style="width:300px"; style="height:480px"; >
+</p>
+
 <br>
 
 - 상단의 파츠 버튼을 누르면, 그에 따른 컨텐츠들이 변경됩니다.
 - "모든 운동 데이터를 Redux-Store 에서 가져온 후", Array.filter() 매서드를 통해, 걸러냅니다.
-- 파츠 버튼은, part를 담고있는 State를 boolean 타입으로 토글하며, 토글(true)된 파츠는, 활성화됩니다.
+- 파츠 버튼은, part를 담고있는 State를 boolean 타입으로 토글하며, 토글(true)된 파츠는, 활성화됩니다
+
+**< Redux Toolkit Slice >**
 
 ```js
     <store / choose-part-slice.tsx >
@@ -286,10 +343,10 @@ const SignInForm = () => {
 ### &#129372; 체중 -
 
 <hr>
-<img src="/public/for-markdown-img/6.do-loss.png" style="width:500px"; style="height:800px";>
-<img src="/public/for-markdown-img/7.do-loss.png" style="width:500px"; style="height:800px";>
-<img src="/public/for-markdown-img/8.do-loss.png" style="width:500px"; style="height:800px";>
-<img src="/public/for-markdown-img/9.do-loss.png" style="width:500px"; style="height:800px";>
+<img src="/public/for-markdown-img/6.do-loss.png" style="width:300px"; style="height:480px"; >
+<img src="/public/for-markdown-img/7.do-loss.png" style="width:300px"; style="height:480px"; >
+<img src="/public/for-markdown-img/8.do-loss.png" style="width:300px"; style="height:480px"; >
+<img src="/public/for-markdown-img/9.do-loss.png" style="width:300px"; style="height:480px"; >
 <br>
 
 - 해리스-베네딕트(Harris-Benedict) 공식을 통해, AMR(전체 소비 칼로리) 를 계산합니다.
@@ -327,7 +384,7 @@ const SignInForm = () => {
 ### &#129372; 식단 +
 
 <hr>
-<img src="/public/for-markdown-img/10.do-eat.png" style="width:500px"; style="height:800px";>
+<img src="/public/for-markdown-img/10.do-eat.png" style="width:300px"; style="height:480px"; >
 <br>
 
 - 각 음식을 카테고리별로 정리, 카테고리를 누르면, 그에 해당하는 음식들을 나열합니다.
@@ -364,7 +421,7 @@ const SignInForm = () => {
 ### &#129372; 로그인 후 찜하기, 식단 캘린더 기능
 
 <hr>
-<img src="/public/for-markdown-img/11.calendar.png" style="width:500px"; style="height:800px";>
+<img src="/public/for-markdown-img/11.calendar.png" style="width:300px"; style="height:480px"; >
 <br>
 
 - Full-Calendar 라이브러리를 사용하였습니다.

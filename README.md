@@ -121,6 +121,7 @@ store 안에는 slice와 action 이 들어있습니다.
 4. 식단 정보를 알려줍니다.
 5. 유저는 로그인 이후에, 캘린더에 식단을 적을 수 있습니다.
    식단은 적고, 지울 수 있습니다.
+6. "media-query" 를 통해 모바일 화면을 구현하였습니다.
 
 <hr/>
 
@@ -343,10 +344,14 @@ const SignInForm = () => {
 ### &#129372; 체중 -
 
 <hr>
+
+<p>
 <img src="/public/for-markdown-img/6.do-loss.png" style="width:300px"; style="height:480px"; >
 <img src="/public/for-markdown-img/7.do-loss.png" style="width:300px"; style="height:480px"; >
 <img src="/public/for-markdown-img/8.do-loss.png" style="width:300px"; style="height:480px"; >
 <img src="/public/for-markdown-img/9.do-loss.png" style="width:300px"; style="height:480px"; >
+</p>
+
 <br>
 
 - 해리스-베네딕트(Harris-Benedict) 공식을 통해, AMR(전체 소비 칼로리) 를 계산합니다.
@@ -462,3 +467,8 @@ const SignInForm = () => {
 풀캘린더의 로직은 components 안의 fullcalendar 폴더에 있습니다.
 
 <br>
+
+
+### &#129372; 미디어쿼리와 모바일화면
+
+** module.css 를 안에 미디어쿼리를 통한 모바일 화면을 구축하였습니다. **
